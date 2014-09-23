@@ -3,8 +3,7 @@
 angular.module('cdreamApp')
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/test', {
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl'
+      .when('/', {
+        templateUrl: 'app/landing-page/index.html'
       });
   });
