@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cdreamApp')
-  .controller('LoginCtrl', function ($scope, $http, $location, socket ,$window) {
+  .controller('LoginCtrl', function ($scope, $http, $window, socket ,$cookies) {
     $scope.message = 'Hello';
 
     $scope.user = {};
