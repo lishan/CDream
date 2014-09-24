@@ -10,3 +10,13 @@ TODO List
 3. Finish dream part
 4. GTD
 5. Step
+6. List, Label, 
+
+```code
+^	Due Date
+!	Priority
+#	Lists and Tags
+@	Location
+*	Repeat
+=	Time Estimate
+```
