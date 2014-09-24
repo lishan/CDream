@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 var UsersSchema = new Schema({
   email: String,
   pass: String,
+  dream: [Schema.Types.Mixed],
   active: Boolean
 });
 

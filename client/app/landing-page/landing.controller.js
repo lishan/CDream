@@ -7,7 +7,7 @@ angular.module('cdreamApp')
     $scope.logout = function(){
         $cookies.user = '';
         $window.location.href = "/";
-    }
+    };
 
     $scope.goAdmin = function(){
         if($cookies.user !== ''){
@@ -16,9 +16,9 @@ angular.module('cdreamApp')
             console.log($location.path());
             $window.location.href = "/login";
         }
-    }
+    };
 
     $scope.testLogin = function(){
-        return $scope.user !== '';
+        return $scope.user !== '' && $scope.user !== undefined;
     }
   });

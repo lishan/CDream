@@ -16,15 +16,33 @@ exports.find = function(req ,res){
     if(err){return handleError(res,err)}
     return res.json(user);
   });
-}
+};
 
 exports.findEmail = function(req ,res){
   Users.findOne({'email' : req.params.email},function(err, user){
-    console.log(err + user);
-    if(err){return false;}
-    return true;
+    return !err;
   });
-}
+};
+
+exports.findUser = function(req, res){
+  Users.findOne({'email' : req.params.email},function(err, user){
+    if(err){return handleError(res,err)}
+    return res.json(user);
+  });
+};
+
+exports.addDreams = function(req, res){
+  if(req.body._id) { delete req.body._id; }
+  Users.findById(req.params.id, function (err, users) {
+    if (err) { return handleError(res, err); }
+    if(!users) { return res.send(404); }
+    users.dream.push(req.body);
+    users.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, users);
+    });
+  });
+};
 
 // Get a single users
 exports.show = function(req, res) {

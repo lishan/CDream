@@ -24,5 +24,7 @@ angular.module('cdreamApp')
         templateUrl: 'app/admin/tables.html'
       }).when('/forms', {
         templateUrl: 'app/admin/forms.html'
+      }).when('/temp',{
+        templateUrl: 'app/admin/temp.html'
       });
   });
