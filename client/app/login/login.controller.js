@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cdreamApp')
-  .controller('LoginCtrl', function ($scope, $http, $location, socket ,userService) {
+  .controller('LoginCtrl', function ($scope, $http, $location, socket ,$cookies) {
     $scope.message = 'Hello';
 
     $scope.user = {};
@@ -18,7 +18,7 @@ angular.module('cdreamApp')
             return;
         }
         $http.get('/api/users/'+$scope.email+"&"+$scope.pass).success(function(user) {
-            userService.setUser({email : user.email});
+            $cookies.user = user.email;
             $location.path('/');
         });
     }
