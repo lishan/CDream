@@ -4,7 +4,8 @@ angular.module('cdreamApp')
   .config(function ($routeProvider) {
     $routeProvider
       .when('/admin', {
-        templateUrl: 'app/admin/index.html'
+        templateUrl: 'app/admin/index.html',
+        controller: 'AdminCtrl'
       }).when('/panels-wells', {
         templateUrl: 'app/admin/panels-wells.html'
       }).when('/buttons', {

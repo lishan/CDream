@@ -11,6 +11,13 @@ exports.index = function(req, res) {
   });
 };
 
+exports.find = function(req ,res){
+  Users.findOne({'email' : req.params.email,'pass' : req.params.pass},function(err, user){
+    if(err){return handleError(res,err)}
+    return res.json(user);
+  });
+}
+
 // Get a single users
 exports.show = function(req, res) {
   Users.findById(req.params.id, function (err, users) {

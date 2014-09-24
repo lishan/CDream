@@ -1,6 +1,7 @@
 CDream Project
 ---
 1. Contains time management and project management for personal.
+2. Angular service for page direct, cookie is good for global items.
 
 TODO List
 ---
