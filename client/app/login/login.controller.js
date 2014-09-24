@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cdreamApp')
-  .controller('LoginCtrl', function ($scope, $http, $location, socket ,$cookies) {
+  .controller('LoginCtrl', function ($scope, $http, $location, socket ,$window) {
     $scope.message = 'Hello';
 
     $scope.user = {};
@@ -19,7 +19,7 @@ angular.module('cdreamApp')
         }
         $http.get('/api/users/'+$scope.email+"&"+$scope.pass).success(function(user) {
             $cookies.user = user.email;
-            $location.path('/');
+            $window.location.href = "/";
         });
     }
   });

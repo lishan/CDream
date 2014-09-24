@@ -18,6 +18,14 @@ exports.find = function(req ,res){
   });
 }
 
+exports.findEmail = function(req ,res){
+  Users.findOne({'email' : req.params.email},function(err, user){
+    console.log(err + user);
+    if(err){return false;}
+    return true;
+  });
+}
+
 // Get a single users
 exports.show = function(req, res) {
   Users.findById(req.params.id, function (err, users) {
