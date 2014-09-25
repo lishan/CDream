@@ -51,6 +51,15 @@ angular.module('cdreamApp')
         return parseInt(minTime) + "天前";
       }
       return new Date(time).toString('yyyy-MM-dd');
+    };
+    $scope.finish = function(dream){
+      if(dream.finished) {
+        $http.put("/api/dreams/" + dream._id, {finished: false});
+        dream.finished = false;
+      }else{
+        $http.put("/api/dreams/" + dream._id, {finished: true});
+        dream.finished = true;
+      }
     }
   });
 

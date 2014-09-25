@@ -407,10 +407,14 @@
           <accordion>
             <accordion-group data-ng-repeat="dream in dreams">
               <accordion-heading>
-                <i class='fa fa-comments fa-fw'></i>  {{dream.name}}
-                <span class="pull-right text-muted"><em>{{transTime(dream.createTime)}}</em></span>
+                <h4 ng-class="{'text-line-through': dream.finished}"><i class='fa fa-comments fa-fw'></i>{{dream.name}}<span class="pull-right text-muted"><em>{{transTime(dream.createTime)}}</em></span></h4>
               </accordion-heading>
-              {{dream.name}}
+              <markdown ng-model="dream"></markdown>
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                  <button type="button" class="btn btn-outline btn-block btn-primary" ng-click="finish(dream)">完成</button>
+                </div>
+              </div>
             </accordion-group>
           </accordion>
         </div>

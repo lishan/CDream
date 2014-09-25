@@ -12,6 +12,10 @@ body {
     width: 100%;
 }
 
+.text-line-through{
+    text-decoration: line-through;
+}
+
 #page-wrapper {
     padding: 0 15px;
     min-height: 568px;
