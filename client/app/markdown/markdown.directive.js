@@ -5,14 +5,14 @@ angular.module('cdreamApp')
     return {
       restrict: 'E',
       template: '<textarea data-provide="markdown" ng-model="model.info"></textarea>',
-      scope:{
+      scope: {
         model: '=ngModel'
       },
       link: function (scope, element, attrs) {
         element.find("textarea").markdown({
-          onBlur: function(e) {
+          onBlur: function (e) {
             console.log(scope.model);
-            $http.put('/api/dreams/' + scope.model._id, {info : scope.model.info});
+            $http.put('/api/dreams/' + scope.model._id, {info: scope.model.info});
           }
         });
       }

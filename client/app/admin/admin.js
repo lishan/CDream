@@ -19,12 +19,15 @@ angular.module('cdreamApp')
       }).when('/login', {
         templateUrl: 'app/admin/login.html'
       }).when('/blank', {
-         templateUrl: 'app/admin/blank.html'
+        templateUrl: 'app/admin/blank.html'
       }).when('/tables', {
         templateUrl: 'app/admin/tables.html'
       }).when('/forms', {
         templateUrl: 'app/admin/forms.html'
-      }).when('/temp',{
+      }).when('/temp', {
         templateUrl: 'app/admin/temp.html'
+      }).when('/tags', {
+        templateUrl: 'app/admin/tags.html',
+        controller: 'TagsCtrl'
       });
   });

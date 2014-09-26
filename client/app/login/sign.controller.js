@@ -1,30 +1,31 @@
 'use strict';
 
 angular.module('cdreamApp')
-  .controller('SignCtrl', function ($scope, $http, $location, socket ,$window, $cookies) {
-    $scope.click = function(){
-        $scope.emailWrong = false;
-        $scope.passWrong = false;
-        $scope.conPassWrong = false;
-        $scope.alreadySign = false;
-        if($scope.email === undefined){
-            $scope.emailWrong = true;
-        }
-        if($scope.pass === undefined){
-            $scope.passWrong = true;
-        }
-        if($scope.pass !== $scope.conPass){
-            $scope.conPassWrong = true;
-        }
-        $http.get('/api/users/find/'+$scope.email).success(function(user) {
-            console.log(user);
-            $scope.alreadySign = user;
-        });
-        if($scope.emailWrong || $scope.passWrong || $scope.conPassWrong || $scope.alreadySign){
-            return;
-        }
-        $http.post('/api/users/',{email : $scope.email, pass : $scope.pass});
-        $cookies.user = $scope.email;
-        $window.location.href = "/";
+  .controller('SignCtrl', function ($scope, $http, $location, socket, $window, $cookies, loginService) {
+    $scope.softVersion = loginService.getSoftwareVersion();
+    $scope.click = function () {
+      $scope.emailWrong = false;
+      $scope.passWrong = false;
+      $scope.conPassWrong = false;
+      $scope.alreadySign = false;
+      if ($scope.email === undefined) {
+        $scope.emailWrong = true;
+      }
+      if ($scope.pass === undefined) {
+        $scope.passWrong = true;
+      }
+      if ($scope.pass !== $scope.conPass) {
+        $scope.conPassWrong = true;
+      }
+      $http.get('/api/users/find/' + $scope.email).success(function (user) {
+        console.log(user);
+        $scope.alreadySign = user;
+      });
+      if ($scope.emailWrong || $scope.passWrong || $scope.conPassWrong || $scope.alreadySign) {
+        return;
+      }
+      $http.post('/api/users/', {email: $scope.email, pass: $scope.pass});
+      $cookies.user = $scope.email;
+      $window.location.href = "/";
     }
   });
