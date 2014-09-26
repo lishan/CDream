@@ -67,7 +67,6 @@ angular.module('cdreamApp')
       $http.put("/api/dreams/" + dream._id, {icon: icon, color: color});
     };
     $scope.deleteDream = function(dream){
-      $http.delete("/api/dreams/" + dream._id);
       var i;
       for(i = 0 ; i < $scope.loginUser.dream.length ; i++){
         if($scope.loginUser.dream[i] === dream._id){
@@ -77,6 +76,7 @@ angular.module('cdreamApp')
       if(i < $scope.loginUser.dream.length){
         $scope.loginUser.dream.splice(i,1);
         $http.post("/api/users/setDream/" + $scope.loginUser._id, {dream: $scope.loginUser.dream});
+        $http.delete("/api/dreams/" + dream._id);
       }
       $window.location.href = "/admin";
     }
