@@ -7,7 +7,9 @@ var DreamSchema = new Schema({
   name: String,
   info: String,
   createTime: Date,
-  finished: Boolean,
+  finished: {type: Boolean, default: false},
+  icon: String,
+  color : String,
   tasks:[Schema.Types.Mixed],
   active: Boolean
 });

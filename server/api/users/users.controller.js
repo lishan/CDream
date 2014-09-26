@@ -44,6 +44,18 @@ exports.addDreams = function(req, res){
   });
 };
 
+exports.setDreams = function(req, res){
+  Users.findById(req.params.id, function (err, users) {
+    if (err) { return handleError(res, err); }
+    if(!users) { return res.send(404); }
+    users.dream = req.body.dream;
+    users.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, users);
+    });
+  });
+};
+
 // Get a single users
 exports.show = function(req, res) {
   Users.findById(req.params.id, function (err, users) {

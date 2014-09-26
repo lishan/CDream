@@ -297,7 +297,7 @@
 <div id="page-wrapper">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">设置</h1>
+      <h1 class="page-header">我有：</h1>
     </div>
     <!-- /.col-lg-12 -->
   </div>
@@ -405,15 +405,36 @@
       <div class="panel-body">
         <div class="list-group">
           <accordion>
-            <accordion-group data-ng-repeat="dream in dreams">
+            <accordion-group data-ng-repeat="dream in dreams" class="{{dream.color}}">
               <accordion-heading>
-                <h4 ng-class="{'text-line-through': dream.finished}"><i class='fa fa-comments fa-fw'></i>{{dream.name}}<span class="pull-right text-muted"><em>{{transTime(dream.createTime)}}</em></span></h4>
+                <div ng-class="{'text-line-through': dream.finished}"><i class='fa fa-fw' ng-class="dream.icon"></i>{{dream.name}}<span
+                  class="pull-right text-muted"><em>{{transTime(dream.createTime)}}</em></span></div>
               </accordion-heading>
-              <markdown ng-model="dream"></markdown>
-              <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                  <button type="button" class="btn btn-outline btn-block btn-primary" ng-click="finish(dream)">完成</button>
-                </div>
+              <div class="jumbotron">
+                <label>设置梦想的颜色</label>
+
+                <p>
+                  <button type="button" class="btn btn-default btn-circle" ng-click="setIconColor(dream,'fa-check','')"><i class="fa fa-check"></i>
+                  </button>
+                  <button type="button" class="btn btn-primary btn-circle" ng-click="setIconColor(dream,'fa-list','panel-primary')"><i class="fa fa-list"></i>
+                  </button>
+                  <button type="button" class="btn btn-success btn-circle" ng-click="setIconColor(dream,'fa-link','panel-success')"><i class="fa fa-link"></i>
+                  </button>
+                  <button type="button" class="btn btn-info btn-circle" ng-click="setIconColor(dream,'fa-check','panel-info')"><i class="fa fa-check"></i>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-circle" ng-click="setIconColor(dream,'fa-times','panel-warning')"><i class="fa fa-times"></i>
+                  </button>
+                  <button type="button" class="btn btn-danger btn-circle" ng-click="setIconColor(dream,'fa-heart','panel-danger')"><i class="fa fa-heart"></i>
+                  </button>
+                </p>
+                <p>
+                  <button type="button" class="btn btn-outline btn-primary" role="button" ng-click="finish(dream)">{{{false: '完成梦想',true : '重新打开'}[dream.finished]}}
+                  </button>
+                  <button type="button" class="btn btn-outline btn-success" role="button" ng-click="deleteDream(dream)"> 删除梦想
+                  </button>
+                </p>
+                <markdown ng-model="dream">
+                </markdown>
               </div>
             </accordion-group>
           </accordion>
@@ -427,7 +448,8 @@
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <input class="form-control" autofocus placeholder="梦想" ng-maxlength ="255" ng-minlength="1" data-ng-model="dream.name">
+              <input class="form-control" autofocus placeholder="梦想" ng-maxlength="255" ng-minlength="1"
+                     data-ng-model="dream.name">
             </div>
           </div>
           <div class="modal-footer">

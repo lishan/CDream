@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cdreamApp')
-  .controller('SignCtrl', function ($scope, $http, $location, socket ,$window) {
+  .controller('SignCtrl', function ($scope, $http, $location, socket ,$window, $cookies) {
     $scope.click = function(){
         $scope.emailWrong = false;
         $scope.passWrong = false;
@@ -24,6 +24,7 @@ angular.module('cdreamApp')
             return;
         }
         $http.post('/api/users/',{email : $scope.email, pass : $scope.pass});
+        $cookies.user = $scope.email;
         $window.location.href = "/";
     }
   });

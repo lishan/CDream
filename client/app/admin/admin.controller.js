@@ -60,6 +60,25 @@ angular.module('cdreamApp')
         $http.put("/api/dreams/" + dream._id, {finished: true});
         dream.finished = true;
       }
+    };
+    $scope.setIconColor = function(dream, icon, color){
+      dream.icon = icon;
+      dream.color = color;
+      $http.put("/api/dreams/" + dream._id, {icon: icon, color: color});
+    };
+    $scope.deleteDream = function(dream){
+      $http.delete("/api/dreams/" + dream._id);
+      var i;
+      for(i = 0 ; i < $scope.loginUser.dream.length ; i++){
+        if($scope.loginUser.dream[i] === dream._id){
+          break;
+        }
+      }
+      if(i < $scope.loginUser.dream.length){
+        $scope.loginUser.dream.splice(i,1);
+        $http.post("/api/users/setDream/" + $scope.loginUser._id, {dream: $scope.loginUser.dream});
+      }
+      $window.location.href = "/admin";
     }
   });
 

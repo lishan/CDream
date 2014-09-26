@@ -10,6 +10,7 @@ router.get('/:email&:pass', controller.find);
 router.get('/find/:email', controller.findEmail);
 router.get('/find/user/:email', controller.findUser);
 router.post('/add/:id', controller.addDreams);
+router.post('/setDream/:id', controller.setDreams);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.update);

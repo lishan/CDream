@@ -3,13 +3,13 @@
 angular.module('cdreamApp')
   .directive('markdown', function () {
     return {
-      templateUrl: 'app/markdown/markdown.html',
-      restrict: 'EA',
+      restrict: 'E',
+      template: '<textarea data-provide="markdown">{{model.info}}</textarea>',
       scope:{
         model: '=ngModel'
       },
       link: function (scope, element, attrs) {
-        element.markdown();
+        element.find("textarea").markdown();
       }
     };
   });
