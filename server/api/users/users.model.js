@@ -7,6 +7,7 @@ var UsersSchema = new Schema({
   email: String,
   pass: String,
   dream: [String],
+  tag: [String],
   active: Boolean
 });
 

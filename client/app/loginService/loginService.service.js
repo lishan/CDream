@@ -10,12 +10,19 @@ angular.module('cdreamApp')
       $http.get('/api/users/find/user/' + $scope.user).success(function (user) {
         $scope.loginUser = user;
         $scope.dreams = [];
+        $scope.tags = [];
         user.dream.forEach(function (value) {
           $http.get('/api/dreams/' + value).success(function (dream) {
             $scope.dreams.push(dream);
           });
         });
+        user.tag.forEach(function (value) {
+          $http.get('/api/tags/' + value).success(function (tag) {
+            $scope.tags.push(tag);
+          });
+        });
         $scope.numDreams = user.dream.length;
+        $scope.numTags = user.tag.length;
       });
     };
 

@@ -56,7 +56,7 @@ angular.module('cdreamApp')
     $scope.dream = {};
     $scope.ok = function () {
       $http.post("/api/dreams/", {name: $scope.dream.name, createTime: new Date()}).success(function (dream) {
-        $http.post("/api/users/add/" + user._id, {dream: dream._id});
+        $http.post("/api/users/addDream/" + user._id, {dream: dream._id});
         $modalInstance.close(dream);
       });
     };

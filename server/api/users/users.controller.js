@@ -56,6 +56,31 @@ exports.setDreams = function(req, res){
   });
 };
 
+exports.addTag = function(req, res){
+  if(req.body._id) { delete req.body._id; }
+  Users.findById(req.params.id, function (err, users) {
+    if (err) { return handleError(res, err); }
+    if(!users) { return res.send(404); }
+    users.tag.push(req.body.tag);
+    users.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, users);
+    });
+  });
+};
+
+exports.setTag = function(req, res){
+  Users.findById(req.params.id, function (err, users) {
+    if (err) { return handleError(res, err); }
+    if(!users) { return res.send(404); }
+    users.tag = req.body.tag;
+    users.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, users);
+    });
+  });
+};
+
 // Get a single users
 exports.show = function(req, res) {
   Users.findById(req.params.id, function (err, users) {

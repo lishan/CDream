@@ -3,11 +3,12 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var TaskSchema = new Schema({
+var TagSchema = new Schema({
   name: String,
   info: String,
-  tag: [String],
+  color: String,
+  icon: String,
   active: Boolean
 });
 
-module.exports = mongoose.model('Task', TaskSchema);
+module.exports = mongoose.model('Tag', TagSchema);
