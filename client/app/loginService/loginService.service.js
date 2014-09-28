@@ -7,7 +7,7 @@ angular.module('cdreamApp')
       if ($scope.user === '' || $scope.user === undefined) {
         $window.location.href = "/";
       }
-      $http.get('/api/users/find/user/' + $scope.user).success(function (user) {
+      $http.get('/api/users/find/' + $scope.user).success(function (user) {
         $scope.loginUser = user;
         $scope.dreams = [];
         $scope.tags = [];
@@ -27,6 +27,6 @@ angular.module('cdreamApp')
     };
 
     this.getSoftwareVersion = function () {
-      return 0.1;
+      return 0.2;
     }
   });

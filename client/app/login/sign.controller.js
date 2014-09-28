@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cdreamApp')
-  .controller('SignCtrl', function ($scope, $http, $location, socket, $window, $cookies, loginService) {
+  .controller('SignCtrl', function ($scope, $http, $location, socket, $window, $cookies, loginService, notificationService) {
     $scope.softVersion = loginService.getSoftwareVersion();
     $scope.click = function () {
       $scope.emailWrong = false;
@@ -17,15 +17,18 @@ angular.module('cdreamApp')
       if ($scope.pass !== $scope.conPass) {
         $scope.conPassWrong = true;
       }
-      $http.get('/api/users/find/' + $scope.email).success(function (user) {
-        console.log(user);
-        $scope.alreadySign = user;
-      });
-      if ($scope.emailWrong || $scope.passWrong || $scope.conPassWrong || $scope.alreadySign) {
+      if ($scope.emailWrong || $scope.passWrong || $scope.conPassWrong) {
+        notificationService.error("请重试");
         return;
       }
-      $http.post('/api/users/', {email: $scope.email, pass: $scope.pass});
-      $cookies.user = $scope.email;
-      $window.location.href = "/";
+      $http.get('/api/users/find/' + $scope.email).success(function (user) {
+        if(user === null || user === 'null'){
+          $http.post('/api/users/', {email: $scope.email, pass: $scope.pass});
+          $cookies.user = $scope.email;
+          $window.location.href = "/landing/" + "欢迎" + $scope.email;
+        }else {
+          notificationService.error("已经被注册的用户名" + $scope.email);
+        }
+      });
     }
   });
