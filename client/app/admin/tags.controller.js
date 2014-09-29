@@ -14,6 +14,10 @@ angular.module('cdreamApp')
                 }
             });
 
+        $scope.remove = function(tag){
+          console.log(tag);
+        };
+
         $scope.add = function () {
             var split = $scope.tag.split(":");
             $scope.tag = '';
