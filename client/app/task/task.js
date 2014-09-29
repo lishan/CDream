@@ -6,5 +6,8 @@ angular.module('cdreamApp')
       .when('/task', {
         templateUrl: 'app/task/task.html',
         controller: 'TaskCtrl'
+      }).when('/task/:message', {
+        templateUrl: 'app/task/task.html',
+        controller: 'TaskCtrl'
       });
   });

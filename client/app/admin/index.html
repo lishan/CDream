@@ -17,7 +17,7 @@
                 <div class="panel-body">
                     <div class="list-group">
                         <accordion>
-                            <accordion-group data-ng-repeat="dream in dreams" class="{{dream.color}}">
+                            <accordion-group data-ng-repeat="dream in dreams" class="panel-{{dream.color}}">
                                 <accordion-heading>
                                     <div ng-class="{'text-line-through': dream.finished}"><i class='fa fa-fw'
                                                                                              ng-class="dream.icon"></i>{{dream.name}}<span
@@ -29,26 +29,26 @@
 
                                     <p>
                                         <button type="button" class="btn btn-default btn-circle"
-                                                ng-click="setIconColor(dream,'fa-check','')"><i class="fa fa-check"></i>
+                                                ng-click="setIconColor(dream,'fa-check','default')"><i class="fa fa-check"></i>
                                         </button>
                                         <button type="button" class="btn btn-primary btn-circle"
-                                                ng-click="setIconColor(dream,'fa-list','panel-primary')"><i
+                                                ng-click="setIconColor(dream,'fa-list','primary')"><i
                                                 class="fa fa-list"></i>
                                         </button>
                                         <button type="button" class="btn btn-success btn-circle"
-                                                ng-click="setIconColor(dream,'fa-link','panel-success')"><i
+                                                ng-click="setIconColor(dream,'fa-link','success')"><i
                                                 class="fa fa-link"></i>
                                         </button>
                                         <button type="button" class="btn btn-info btn-circle"
-                                                ng-click="setIconColor(dream,'fa-check','panel-info')"><i
+                                                ng-click="setIconColor(dream,'fa-check','info')"><i
                                                 class="fa fa-check"></i>
                                         </button>
                                         <button type="button" class="btn btn-warning btn-circle"
-                                                ng-click="setIconColor(dream,'fa-times','panel-warning')"><i
+                                                ng-click="setIconColor(dream,'fa-times','warning')"><i
                                                 class="fa fa-times"></i>
                                         </button>
                                         <button type="button" class="btn btn-danger btn-circle"
-                                                ng-click="setIconColor(dream,'fa-heart','panel-danger')"><i
+                                                ng-click="setIconColor(dream,'fa-heart','danger')"><i
                                                 class="fa fa-heart"></i>
                                         </button>
                                     </p>
