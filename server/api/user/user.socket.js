@@ -4,21 +4,21 @@
 
 'use strict';
 
-var Users = require('./users.model');
+var User = require('./user.model');
 
 exports.register = function(socket) {
-  Users.schema.post('save', function (doc) {
+  User.schema.post('save', function (doc) {
     onSave(socket, doc);
   });
-  Users.schema.post('remove', function (doc) {
+  User.schema.post('remove', function (doc) {
     onRemove(socket, doc);
   });
 }
 
 function onSave(socket, doc, cb) {
-  socket.emit('users:save', doc);
+  socket.emit('user:save', doc);
 }
 
 function onRemove(socket, doc, cb) {
-  socket.emit('users:remove', doc);
+  socket.emit('user:remove', doc);
 }

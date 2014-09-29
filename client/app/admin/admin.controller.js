@@ -5,6 +5,9 @@ angular.module('cdreamApp')
     loginService.getCookieData($scope);
     $scope.softVersion = loginService.getSoftwareVersion();
     utilService.pinesNotify();
+    $scope.choose = function(obj){
+        return obj === null || obj === undefined;
+    };
     $scope.open = function (size) {
       var modalInstance = $modal.open({
         templateUrl: 'myModalContent.html',
@@ -39,21 +42,13 @@ angular.module('cdreamApp')
       $http.put("/api/dreams/" + dream._id, {icon: icon, color: color});
     };
     $scope.deleteDream = function (dream) {
-      var i;
-      for (i = 0; i < $scope.loginUser.dream.length; i++) {
-        if ($scope.loginUser.dream[i] === dream._id) {
-          break;
-        }
-      }
-      if (i < $scope.loginUser.dream.length) {
-        $scope.loginUser.dream.splice(i, 1);
-        $http.post("/api/users/setDream/" + $scope.loginUser._id, {dream: $scope.loginUser.dream}).success(function(){
-            $http.delete("/api/dreams/" + dream._id);
-            $window.location.href = "/admin/" + "删除" + dream.name + "成功";
+        $http.post("/api/users/removeDream/" + $scope.loginUser._id, {dream: dream._id}).success(function(){
+           $http.delete("/api/dreams/" + dream._id);
+           loginService.getCookieData($scope);
+           notificationService.success("删除" + dream.name + "成功");
+        }).error(function(){
+           notificationService.error("删除" + dream.name + "失败");
         });
-      }else{
-        $window.location.href = "/admin/" + "删除" + dream.name + "失败";
-      }
     }
   });
 
@@ -61,13 +56,13 @@ angular.module('cdreamApp')
   .controller('ModalInstanceCtrl', function ($scope, $modalInstance, $window, $http, user, notificationService) {
     $scope.dream = {};
     $scope.ok = function () {
-      $http.post("/api/dreams/", {name: $scope.dream.name, createTime: new Date()}).success(function (dream) {
+      $http.post("/api/dreams/", {_user : user._id, name: $scope.dream.name, createTime: new Date()}).success(function (dream) {
         $http.post("/api/users/addDream/" + user._id, {dream: dream._id});
         $modalInstance.close(dream);
-        $window.location.href = "/admin/" + "添加"+ $scope.dream.name + "成功";
+        notificationService.success("添加"+ $scope.dream.name + "成功");
       }).error(function(){
         $modalInstance.close(dream);
-        $window.location.href = "/admin/" + "添加"+ $scope.dream.name + "失败";
+        notificationService.success("添加"+ $scope.dream.name + "失败");
       });
 
     };

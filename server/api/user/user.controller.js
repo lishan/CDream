@@ -1,42 +1,42 @@
 'use strict';
 
 var _ = require('lodash');
-var Users = require('./users.model');
+var User = require('./user.model');
 
-// Get list of userss
+// Get list of users
 exports.index = function(req, res) {
-  Users.find(function (err, userss) {
+  User.find(function (err, users) {
     if(err) { return handleError(res, err); }
-    return res.json(200, userss);
+    return res.json(200, users);
   });
 };
 
 exports.find = function(req ,res){
-  Users.findOne({'email' : req.params.email,'pass' : req.params.pass},function(err, user){
+  User.findOne({'email' : req.params.email,'pass' : req.params.pass},function(err, user){
     if(err){return handleError(res,err)}
     return res.json(user);
   });
 };
 
 exports.findEmail = function(req ,res){
-  Users.findOne({'email' : req.params.email},function(err, user){
+  User.findOne({'email' : req.params.email},function(err, user){
     return !err;
   });
 };
 
 exports.findUser = function(req, res){
-  Users.findOne({'email' : req.params.email},function(err, user){
+  User.findOne({'email' : req.params.email}).populate('dreams tags').exec(function(err, user){
     if(err){return handleError(res,err)}
     return res.json(user);
   });
 };
 
-exports.addDreams = function(req, res){
+exports.addDream = function(req, res){
   if(req.body._id) { delete req.body._id; }
-  Users.findById(req.params.id, function (err, users) {
+  User.findById(req.params.id, function (err, users) {
     if (err) { return handleError(res, err); }
     if(!users) { return res.send(404); }
-    users.dream.push(req.body.dream);
+    users.dreams.push(req.body.dream);
     users.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, users);
@@ -44,11 +44,11 @@ exports.addDreams = function(req, res){
   });
 };
 
-exports.setDreams = function(req, res){
-  Users.findById(req.params.id, function (err, users) {
+exports.removeDream = function(req, res){
+  User.findById(req.params.id, function (err, users) {
     if (err) { return handleError(res, err); }
     if(!users) { return res.send(404); }
-    users.dream = req.body.dream;
+    users.dreams.pull(req.body.dream);
     users.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, users);
@@ -58,10 +58,10 @@ exports.setDreams = function(req, res){
 
 exports.addTag = function(req, res){
   if(req.body._id) { delete req.body._id; }
-  Users.findById(req.params.id, function (err, users) {
+  User.findById(req.params.id, function (err, users) {
     if (err) { return handleError(res, err); }
     if(!users) { return res.send(404); }
-    users.tag.push(req.body.tag);
+    users.tags.push(req.body.tag);
     users.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, users);
@@ -69,11 +69,11 @@ exports.addTag = function(req, res){
   });
 };
 
-exports.setTag = function(req, res){
-  Users.findById(req.params.id, function (err, users) {
+exports.removeTag = function(req, res){
+  User.findById(req.params.id, function (err, users) {
     if (err) { return handleError(res, err); }
     if(!users) { return res.send(404); }
-    users.tag = req.body.tag;
+    users.tags.pull(req.body.tag);
     users.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, users);
@@ -81,43 +81,43 @@ exports.setTag = function(req, res){
   });
 };
 
-// Get a single users
+// Get a single user
 exports.show = function(req, res) {
-  Users.findById(req.params.id, function (err, users) {
+  User.findById(req.params.id, function (err, user) {
     if(err) { return handleError(res, err); }
-    if(!users) { return res.send(404); }
-    return res.json(users);
+    if(!user) { return res.send(404); }
+    return res.json(user);
   });
 };
 
-// Creates a new users in the DB.
+// Creates a new user in the DB.
 exports.create = function(req, res) {
-  Users.create(req.body, function(err, users) {
+  User.create(req.body, function(err, user) {
     if(err) { return handleError(res, err); }
-    return res.json(201, users);
+    return res.json(201, user);
   });
 };
 
-// Updates an existing users in the DB.
+// Updates an existing user in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  Users.findById(req.params.id, function (err, users) {
+  User.findById(req.params.id, function (err, user) {
     if (err) { return handleError(res, err); }
-    if(!users) { return res.send(404); }
-    var updated = _.merge(users, req.body);
+    if(!user) { return res.send(404); }
+    var updated = _.merge(user, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      return res.json(200, users);
+      return res.json(200, user);
     });
   });
 };
 
-// Deletes a users from the DB.
+// Deletes a user from the DB.
 exports.destroy = function(req, res) {
-  Users.findById(req.params.id, function (err, users) {
+  User.findById(req.params.id, function (err, user) {
     if(err) { return handleError(res, err); }
-    if(!users) { return res.send(404); }
-    users.remove(function(err) {
+    if(!user) { return res.send(404); }
+    user.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.send(204);
     });

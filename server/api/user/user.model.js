@@ -6,9 +6,9 @@ var mongoose = require('mongoose'),
 var UsersSchema = new Schema({
   email: String,
   pass: String,
-  dream: [String],
-  tag: [String],
+  dreams: [{type : Schema.Types.ObjectId, ref : 'Dream'}],
+  tags: [{type : Schema.Types.ObjectId, ref : 'Tag'}],
   active: Boolean
 });
 
-module.exports = mongoose.model('Users', UsersSchema);
+module.exports = mongoose.model('User', UsersSchema);
