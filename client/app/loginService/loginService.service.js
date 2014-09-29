@@ -17,6 +17,6 @@ angular.module('cdreamApp')
     };
 
     this.getSoftwareVersion = function () {
-      return 0.2;
+      return 0.3;
     }
   });

@@ -13,10 +13,13 @@
       <!-- /input-group -->
     </li>
     <li>
-      <a href="#admin" ng-class="{active : choose()}"><i class="fa fa-dashboard fa-fw"></i> 设置</a>
+      <a href="#admin" ng-class="{active : choose()}"><i class="fa fa-edit fa-fw"></i> 设置</a>
+    </li>
+    <li>
+      <a href="#admin" ng-class="{active : choose()}"><i class="fa fa-line-chart fa-fw"></i> 报表</a>
     </li>
     <li data-ng-repeat="dream in dreams">
-      <a href="/dream/{{dream._id}}" ng-class="{active : choose(dream)}"><i class="fa fa-fw" ng-class="dream.icon"></i> <span class="text-{{dream.color}}">{{dream.name}}</span></a>
+      <a href="/dream/{{dream._id}}" ng-class="{active : choose(dream)}"> <span class="text-{{dream.color}}"><i class="fa fa-fw" ng-class="dream.icon"></i> {{dream.name}}</span></a>
     </li>
   </ul>
 </div>
