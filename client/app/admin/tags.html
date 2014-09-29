@@ -1,121 +1,121 @@
 <div id="wrapper">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div ng-include="'components/gtdHeader.html'"></div>
-        <div ng-include="'components/sideBar.html'"></div>
-        <!-- /.navbar-static-side -->
-    </nav>
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div ng-include="'components/gtdHeader.html'"></div>
+    <div ng-include="'components/sideBar.html'"></div>
+    <!-- /.navbar-static-side -->
+  </nav>
 
-    <div id="page-wrapper">
-        <div ng-include="'components/adminHeader.html'"></div>
-        <!-- /.row -->
-        <div class="row">
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <i class="fa fa-shopping-cart fa-fw"></i>
-                    所有标签
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <ul class="chat">
-                        <li class="left clearfix" data-ng-repeat="tag in tags">
+  <div id="page-wrapper">
+    <div ng-include="'components/adminHeader.html'"></div>
+    <!-- /.row -->
+    <div class="row">
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <i class="fa fa-shopping-cart fa-fw"></i>
+          所有标签
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+          <ul class="chat">
+            <li class="left clearfix" data-ng-repeat="tag in tags">
             <span class="chat-img pull-left">
                    <button type="button" class="btn btn-circle btn-lg" ng-class="tag.color">
-                       <i class="fa" ng-class="tag.icon"></i>
+                     <i class="fa" ng-class="tag.icon"></i>
                    </button>
             </span>
 
-                            <div class="chat-body clearfix">
-                                <h4 class="header">
-                                    <strong class="primary-font">{{tag.name}}</strong>
-                                    <small>
-                                        {{tag.info}}
-                                    </small>
-                                </h4>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.panel-body -->
-                <div class="panel-footer">
-                    <div class="input-group">
-                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="请输入标签"
-                               ng-model="tag">
+              <div class="chat-body clearfix">
+                <h4 class="header">
+                  <strong class="primary-font">{{tag.name}}</strong>
+                  <small>
+                    {{tag.info}}
+                  </small>
+                </h4>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- /.panel-body -->
+        <div class="panel-footer">
+          <div class="input-group">
+            <input id="btn-input" type="text" class="form-control input-sm" placeholder="请输入标签"
+                   ng-model="tag">
                                 <span class="input-group-btn">
                                     <button class="btn btn-warning btn-sm" id="btn-chat" ng-click="add()">
-                                        添加
+                                      添加
                                     </button>
                                 </span>
-                    </div>
-                    <br>
+          </div>
+          <br>
 
-                    <div class="alert alert-info">
-                        <p>
-                            标签添加格式为：标签名称:颜色:图标:其他信息
-                        </p>
-                    </div>
-                    <div class="alert alert-warning">
-                        <p>
-                            例如输入: <em>朋友:btn-danger:fa-heart:我的朋友</em>
-                        </p>
-                        <br>
+          <div class="alert alert-info">
+            <p>
+              标签添加格式为：标签名称:颜色:图标:其他信息
+            </p>
+          </div>
+          <div class="alert alert-warning">
+            <p>
+              例如输入: <em>朋友:btn-danger:fa-heart:我的朋友</em>
+            </p>
+            <br>
 
-                        <p>
+            <p>
             <span class="chat-img pull-left">
                    <button type="button" class="btn btn-circle btn-danger btn-lg">
-                       <i class="fa fa-heart"></i>
+                     <i class="fa fa-heart"></i>
                    </button>
             </span>
-                        <div class="clearfix">
-                            <h4>
-                                <strong class="primary-font">朋友</strong>
-                                <small>
-                                    我的朋友
-                                </small>
-                            </h4>
-                        </div>
-                        </p>
-                    </div>
-                    <div class="alert alert-dismissable">
-                        <p>
-                            一些常用标签如下：
-                            <i class="fa fa-check"></i> fa-check
-                            <i class="fa fa-list"></i> fa-list
-                            <i class="fa fa-link"></i> fa-link
-                            <i class="fa fa-times"></i> fa-times
-                            <i class="fa fa-heart"></i> fa-heart
-                            <a class="btn btn-info btn-xs" ng-href="#helper/icon">查看全部</a>
-                        </p>
-
-                        <p>
-                            一些常用颜色如下：
-                            <button type="button" class="btn btn-primary btn-xs">
-                                btn-primary
-                            </button>
-                            <button type="button" class="btn btn-default btn-xs">
-                                btn-default
-                            </button>
-                            <button type="button" class="btn btn-success btn-xs">
-                                btn-success
-                            </button>
-                            <button type="button" class="btn btn-info btn-xs">
-                                btn-info
-                            </button>
-                            <button type="button" class="btn btn-danger btn-xs">
-                                btn-danger
-                            </button>
-                            <button type="button" class="btn btn-warning btn-xs">
-                                btn-warning
-                            </button>
-                        </p>
-                    </div>
-                </div>
-                <!-- /.panel-footer -->
+            <div class="clearfix">
+              <h4>
+                <strong class="primary-font">朋友</strong>
+                <small>
+                  我的朋友
+                </small>
+              </h4>
             </div>
+            </p>
+          </div>
+          <div class="alert alert-dismissable">
+            <p>
+              一些常用标签如下：
+              <i class="fa fa-check"></i> fa-check
+              <i class="fa fa-list"></i> fa-list
+              <i class="fa fa-link"></i> fa-link
+              <i class="fa fa-times"></i> fa-times
+              <i class="fa fa-heart"></i> fa-heart
+              <a class="btn btn-info btn-xs" ng-href="#helper/icon">查看全部</a>
+            </p>
+
+            <p>
+              一些常用颜色如下：
+              <button type="button" class="btn btn-primary btn-xs">
+                btn-primary
+              </button>
+              <button type="button" class="btn btn-default btn-xs">
+                btn-default
+              </button>
+              <button type="button" class="btn btn-success btn-xs">
+                btn-success
+              </button>
+              <button type="button" class="btn btn-info btn-xs">
+                btn-info
+              </button>
+              <button type="button" class="btn btn-danger btn-xs">
+                btn-danger
+              </button>
+              <button type="button" class="btn btn-warning btn-xs">
+                btn-warning
+              </button>
+            </p>
+          </div>
         </div>
+        <!-- /.panel-footer -->
+      </div>
     </div>
-    <!-- /#page-wrapper -->
+  </div>
+  <!-- /#page-wrapper -->
 
 
 </div>

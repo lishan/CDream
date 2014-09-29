@@ -52,8 +52,17 @@ angular.module('cdreamApp')
   });
 
 angular.module('cdreamApp')
-  .controller('ModalInstanceCtrl', function ($scope, $modalInstance, $http, user, notificationService) {
+  .controller('ModalInstanceCtrl', function ($scope, $modalInstance, $http, user, notificationService, hotkeys) {
     $scope.dream = {};
+
+    hotkeys.bindTo($scope)
+      .add({
+        combo: 'enter',
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+        callback: function () {
+          $scope.ok();
+        }
+      });
     $scope.ok = function () {
       $http.post("/api/dreams/", {_user: user._id, name: $scope.dream.name, createTime: new Date()}).success(function (dream) {
         $http.post("/api/users/addDream/" + user._id, {dream: dream._id});
