@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cdreamApp')
-  .directive('markdown', function ($http) {
+  .directive('markdown', function ($http, notificationService) {
     return {
       restrict: 'E',
       template: '<textarea data-provide="markdown" ng-model="model.info"></textarea>',
@@ -11,8 +11,11 @@ angular.module('cdreamApp')
       link: function (scope, element, attrs) {
         element.find("textarea").markdown({
           onBlur: function (e) {
-            console.log(scope.model);
-            $http.put('/api/dreams/' + scope.model._id, {info: scope.model.info});
+            $http.put('/api/dreams/' + scope.model._id, {info: scope.model.info}).success(function(){
+                notificationService.success("保存" + scope.model.name + "成功");
+            }).error(function(){
+                notificationService.success("保存" + scope.model.name + "失败");
+            });
           }
         });
       }

@@ -1,12 +1,10 @@
 'use strict';
 
 angular.module('cdreamApp')
-  .controller('LoginCtrl', function ($scope, $http, $window, socket, $cookies, loginService, $routeParams, notificationService) {
+  .controller('LoginCtrl', function ($scope, $http, $window, socket, $cookies, loginService, $routeParams, notificationService, utilService) {
     $scope.user = {};
     $scope.softVersion = loginService.getSoftwareVersion();
-    if($routeParams.message !== '' && $routeParams.message !== undefined){
-      notificationService.info($routeParams.message);
-    }
+    utilService.pinesNotify();
 
     $scope.click = function () {
       $scope.emailWrong = false;

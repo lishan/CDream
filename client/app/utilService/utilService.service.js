@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('cdreamApp')
-  .service('utilService', function () {
+  .service('utilService', function ($routeParams, notificationService) {
     this.timeConventor = function (time) {
       var minTime = (new Date() - new Date(time)) / 1000;
       if (minTime < 60) {
@@ -20,5 +20,10 @@ angular.module('cdreamApp')
         return parseInt(minTime) + "天前";
       }
       return new Date(time).toString('yyyy-MM-dd');
+    };
+    this.pinesNotify = function(){
+      if($routeParams.message !== '' && $routeParams.message !== undefined){
+         notificationService.info($routeParams.message);
+      }
     };
   });

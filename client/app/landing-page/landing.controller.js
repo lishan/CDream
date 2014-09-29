@@ -1,12 +1,11 @@
 'use strict';
 
 angular.module('cdreamApp')
-  .controller('LandCtrl', function ($scope, $http, socket, $cookies, $routeParams, $window, loginService, notificationService) {
+  .controller('LandCtrl', function ($scope, $http, socket, $cookies, $routeParams, $window, loginService, notificationService, utilService) {
     $scope.user = $cookies.user;
     $scope.softVersion = loginService.getSoftwareVersion();
-    if($routeParams.message !== '' && $routeParams.message !== undefined){
-      notificationService.info($routeParams.message);
-    }
+    utilService.pinesNotify();
+
 
     $scope.logout = function () {
       var tmpUser = $cookies.user;

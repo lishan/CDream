@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('cdreamApp')
-  .controller('SignCtrl', function ($scope, $http, $location, socket, $window, $cookies, loginService, notificationService) {
+  .controller('SignCtrl', function ($scope, $http, $location, socket, $window, $cookies, loginService, notificationService, utilService) {
     $scope.softVersion = loginService.getSoftwareVersion();
+    utilService.pinesNotify();
     $scope.click = function () {
       $scope.emailWrong = false;
       $scope.passWrong = false;
