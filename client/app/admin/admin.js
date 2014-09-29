@@ -32,5 +32,8 @@ angular.module('cdreamApp')
       }).when('/tags', {
         templateUrl: 'app/admin/tags.html',
         controller: 'TagsCtrl'
+      }).when('/tags/:message', {
+        templateUrl: 'app/admin/tags.html',
+        controller: 'TagsCtrl'
       });
   });
