@@ -1,10 +1,24 @@
 'use strict';
 
 angular.module('cdreamApp')
-  .controller('LoginCtrl', function ($scope, $http, $window, socket, $cookies, loginService, $routeParams, notificationService, utilService) {
+  .controller('LoginCtrl', function ($scope, $http, socket, $location, $cookies, loginService, $routeParams, notificationService, hotkeys) {
     $scope.user = {};
     $scope.softVersion = loginService.getSoftwareVersion();
-    utilService.pinesNotify();
+
+    hotkeys.bindTo($scope)
+      .add({
+        combo: 'enter',
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+        callback: function () {
+          $scope.click();
+        }
+      }).add({
+        combo: 'esc',
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+        callback: function () {
+          $location.path("/");
+        }
+      });
 
     $scope.click = function () {
       $scope.emailWrong = false;
@@ -20,10 +34,11 @@ angular.module('cdreamApp')
         return;
       }
       $http.get('/api/users/' + $scope.email + "&" + $scope.pass).success(function (user) {
-        if(user.email !== undefined){
+        if (user.email !== undefined) {
           $cookies.user = user.email;
-          $window.location.href = "/landing/" + user.email + "登陆成功";
-        }else{
+          $location.path("/");
+          notificationService.success(user.email + "登陆成功");
+        } else {
           notificationService.error("错误的用户名和密码，请重试");
         }
       });

@@ -21,8 +21,8 @@
                                 <accordion-heading>
                                     <div ng-class="{'text-line-through': dream.finished}"><i class='fa fa-fw'
                                                                                              ng-class="dream.icon"></i>{{dream.name}}
-                                      <span class="pull-right text-muted"><em>{{transTime(dream.createTime)}}</em></span>
-                                      <span ng-if="dream.finished" class="pull-right label label-success">已完成</span>
+                                        <span class="pull-right text-muted"><em>{{transTime(dream.createTime)}}</em></span>
+                                        <span ng-if="dream.finished" class="pull-right label label-success">已完成</span>
                                     </div>
 
                                 </accordion-heading>
@@ -31,7 +31,8 @@
 
                                     <p>
                                         <button type="button" class="btn btn-default btn-circle"
-                                                ng-click="setIconColor(dream,'fa-check','default')"><i class="fa fa-check"></i>
+                                                ng-click="setIconColor(dream,'fa-check','default')"><i
+                                                class="fa fa-check"></i>
                                         </button>
                                         <button type="button" class="btn btn-primary btn-circle"
                                                 ng-click="setIconColor(dream,'fa-list','primary')"><i

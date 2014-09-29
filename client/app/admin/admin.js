@@ -6,9 +6,6 @@ angular.module('cdreamApp')
       .when('/admin', {
         templateUrl: 'app/admin/index.html',
         controller: 'AdminCtrl'
-      }).when('/admin/:message', {
-        templateUrl: 'app/admin/index.html',
-        controller: 'AdminCtrl'
       }).when('/panels-wells', {
         templateUrl: 'app/admin/panels-wells.html'
       }).when('/buttons', {
@@ -30,9 +27,6 @@ angular.module('cdreamApp')
       }).when('/temp', {
         templateUrl: 'app/admin/temp.html'
       }).when('/tags', {
-        templateUrl: 'app/admin/tags.html',
-        controller: 'TagsCtrl'
-      }).when('/tags/:message', {
         templateUrl: 'app/admin/tags.html',
         controller: 'TagsCtrl'
       });

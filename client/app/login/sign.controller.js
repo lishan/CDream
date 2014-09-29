@@ -1,9 +1,24 @@
 'use strict';
 
 angular.module('cdreamApp')
-  .controller('SignCtrl', function ($scope, $http, $location, socket, $window, $cookies, loginService, notificationService, utilService) {
+  .controller('SignCtrl', function ($scope, $http, $location, socket, $cookies, loginService, notificationService, hotkeys) {
     $scope.softVersion = loginService.getSoftwareVersion();
-    utilService.pinesNotify();
+
+    hotkeys.bindTo($scope)
+      .add({
+        combo: 'enter',
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+        callback: function () {
+          $scope.click();
+        }
+      }).add({
+        combo: 'esc',
+        allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+        callback: function () {
+          $location.path("/");
+        }
+      });
+
     $scope.click = function () {
       $scope.emailWrong = false;
       $scope.passWrong = false;
@@ -23,11 +38,12 @@ angular.module('cdreamApp')
         return;
       }
       $http.get('/api/users/find/' + $scope.email).success(function (user) {
-        if(user === null || user === 'null'){
+        if (user === null || user === 'null') {
           $http.post('/api/users/', {email: $scope.email, pass: $scope.pass});
           $cookies.user = $scope.email;
-          $window.location.href = "/landing/" + "欢迎" + $scope.email;
-        }else {
+          $location.path("/");
+          notificationService.success("欢迎" + $scope.email);
+        } else {
           notificationService.error("已经被注册的用户名" + $scope.email);
         }
       });

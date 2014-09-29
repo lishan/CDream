@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('cdreamApp')
-  .service('loginService', function ($window, $http, $cookies) {
+  .service('loginService', function ($location, $http, $cookies) {
     this.getCookieData = function ($scope) {
       $scope.user = $cookies.user;
       if ($scope.user === '' || $scope.user === undefined) {
-        $window.location.href = "/";
+        $location.path("/");
       }
       $http.get('/api/users/find/' + $scope.user).success(function (user) {
         $scope.loginUser = user;

@@ -21,9 +21,4 @@ angular.module('cdreamApp')
       }
       return new Date(time).toString('yyyy-MM-dd');
     };
-    this.pinesNotify = function(){
-      if($routeParams.message !== '' && $routeParams.message !== undefined){
-         notificationService.info($routeParams.message);
-      }
-    };
   });

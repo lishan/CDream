@@ -7,7 +7,8 @@ angular.module('cdreamApp', [
   'ngRoute',
   'btford.socket-io',
   'ui.bootstrap',
-  'jlareau.pnotify'
+  'jlareau.pnotify',
+  'cfp.hotkeys'
 ])
   .config(function ($routeProvider, $locationProvider, notificationServiceProvider) {
     $routeProvider

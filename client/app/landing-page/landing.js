@@ -6,7 +6,5 @@ angular.module('cdreamApp')
       .when('/', {
         templateUrl: 'app/landing-page/index.html',
         controller: 'LandCtrl'
-      }).when('/landing/:message', {
-        templateUrl: 'app/landing-page/index.html',
-        controller: 'LandCtrl'});
+      });
   });

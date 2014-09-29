@@ -1,12 +1,11 @@
 'use strict';
 
 angular.module('cdreamApp')
-  .controller('AdminCtrl', function ($scope, $http, socket, $cookies, $window, $modal, utilService, loginService, notificationService) {
+  .controller('AdminCtrl', function ($scope, $http, socket, $cookies, $modal, utilService, loginService, notificationService) {
     loginService.getCookieData($scope);
     $scope.softVersion = loginService.getSoftwareVersion();
-    utilService.pinesNotify();
-    $scope.choose = function(obj){
-        return obj === null || obj === undefined;
+    $scope.choose = function (obj) {
+      return obj === null || obj === undefined;
     };
     $scope.open = function (size) {
       var modalInstance = $modal.open({
@@ -42,27 +41,27 @@ angular.module('cdreamApp')
       $http.put("/api/dreams/" + dream._id, {icon: icon, color: color});
     };
     $scope.deleteDream = function (dream) {
-        $http.post("/api/users/removeDream/" + $scope.loginUser._id, {dream: dream._id}).success(function(){
-           $http.delete("/api/dreams/" + dream._id);
-           loginService.getCookieData($scope);
-           notificationService.success("删除" + dream.name + "成功");
-        }).error(function(){
-           notificationService.error("删除" + dream.name + "失败");
-        });
+      $http.post("/api/users/removeDream/" + $scope.loginUser._id, {dream: dream._id}).success(function () {
+        $http.delete("/api/dreams/" + dream._id);
+        loginService.getCookieData($scope);
+        notificationService.success("删除" + dream.name + "成功");
+      }).error(function () {
+        notificationService.error("删除" + dream.name + "失败");
+      });
     }
   });
 
 angular.module('cdreamApp')
-  .controller('ModalInstanceCtrl', function ($scope, $modalInstance, $window, $http, user, notificationService) {
+  .controller('ModalInstanceCtrl', function ($scope, $modalInstance, $http, user, notificationService) {
     $scope.dream = {};
     $scope.ok = function () {
-      $http.post("/api/dreams/", {_user : user._id, name: $scope.dream.name, createTime: new Date()}).success(function (dream) {
+      $http.post("/api/dreams/", {_user: user._id, name: $scope.dream.name, createTime: new Date()}).success(function (dream) {
         $http.post("/api/users/addDream/" + user._id, {dream: dream._id});
         $modalInstance.close(dream);
-        notificationService.success("添加"+ $scope.dream.name + "成功");
-      }).error(function(){
+        notificationService.success("添加" + $scope.dream.name + "成功");
+      }).error(function () {
         $modalInstance.close(dream);
-        notificationService.success("添加"+ $scope.dream.name + "失败");
+        notificationService.success("添加" + $scope.dream.name + "失败");
       });
 
     };
