@@ -22,8 +22,9 @@
                   <div ng-class="{'text-line-through': dream.finished}">
                     <i class='fa fa-fw' ng-class="dream.icon"></i>
                       {{dream.name}}
-                    <span class="pull-right text-muted"><em>{{transTime(dream.createTime)}}</em></span>
+                    <span class="pull-right text-muted"><em>&nbsp;{{transTime(dream.createTime)}}</em></span>
                     <span ng-if="dream.finished" class="pull-right label label-success">已完成</span>
+                    <span ng-if="dream.finished" class="pull-right label label-danger">查看记录</span>
                   </div>
 
                 </accordion-heading>
