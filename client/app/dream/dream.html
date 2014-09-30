@@ -10,13 +10,15 @@
     <br>
 
     <div class="row">
-      <div class="panel panel-success">
+      <div class="panel panel-{{dream.color}}">
         <div class="panel-heading">
-          <i class="fa fa-shopping-cart fa-fw"></i>
-          我的任务
+          <i class="fa {{dream.icon}} fa-fw"></i>
+          {{dream.name}}
         </div>
         <div class="panel-body">
-
+          <div>
+            toMarkdown({{dream.info}})
+          </div>
         </div>
       </div>
     </div>
