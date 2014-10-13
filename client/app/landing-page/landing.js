@@ -6,5 +6,7 @@ angular.module('cdreamApp')
       .when('/', {
         templateUrl: 'app/landing-page/index.html',
         controller: 'LandCtrl'
+      }).otherwise({
+
       });
   });

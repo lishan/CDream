@@ -13,21 +13,23 @@
       <!-- /input-group -->
     </li>
     <li>
-      <a href="#admin" ng-class="{active : choose()}"><i class="fa fa-edit fa-fw"></i> 设置</a>
+      <a href="#admin" class="sideBar" ng-class="{active : choose()}"><i class="fa fa-edit fa-fw"></i> 设置</a>
     </li>
     <li>
-      <a href="#admin"><i class="fa fa-line-chart fa-fw"></i> 报表</a>
+      <a href="#admin" class="sideBar"><i class="fa fa-line-chart fa-fw"></i> 报表</a>
     </li>
     <li>
-      <a href="#admin" ng-click="isCollapsed = !isCollapsed"><i class="fa fa-heart fa-fw"></i> 梦想</a>
+      <a href="" class="sideBar" ng-click="isCollapsed = !isCollapsed"><i class="fa fa-heart fa-fw"></i> 梦想</a>
     </li>
     <div collapse="isCollapsed">
       <ul class="nav">
         <li data-ng-repeat="dream in dreams">
-          <a href="/dream/{{dream._id}}" ng-class="{active : choose(dream)}"> <span class="text-{{dream.color}}">  <i class="fa fa-fw" ng-class="dream.icon"></i> {{dream.name}}</span></a>
+          <a href="/dream/{{dream._id}}" ng-class="{active : choose(dream)}"> <span class="text-{{dream.color}}">  <i class="fa fa-fw" ng-class="dream.icon"></i>{{dream.name}}</span></a>
         </li>
       </ul>
     </div>
+    <li>
+      <a href="" class="sideBar"><i class="fa fa-calendar fa-fw"></i> 计划</a>
     </li>
   </ul>
 </div>

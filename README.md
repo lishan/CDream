@@ -15,8 +15,12 @@ TODO List
 ```code
 ^	Due Date
 !	Priority
-#	Lists and Tags
-@	Location
-*	Repeat
-=	Time Estimate
+#	Lists and Location
+```
+
+```code
+* Repeat
+^ Due Date
+! Priority
+# List and Location
 ```
