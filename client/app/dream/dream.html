@@ -20,6 +20,12 @@
             <markdown ng-model="dream">
             </markdown>
           </div>
+          已有任务
+          <div class="well">
+            <div data-ng-repeat="task in tasks">
+              {{task.name}} {{task.tags | json}}
+            </div>
+          </div>
           新建任务
           <div class="well">
             <div class="row">

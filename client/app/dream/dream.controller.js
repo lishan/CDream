@@ -5,8 +5,9 @@ angular.module('cdreamApp')
     loginService.getCookieData($scope);
     $scope.softVersion = loginService.getSoftwareVersion();
 
-    $http.get("/api/dreams/" + $routeParams.dreamId).success(function(dream){
+    $http.get("/api/dreams/find/" + $routeParams.dreamId).success(function(dream){
       $scope.dream = dream;
+      $scope.tasks = dream.tasks;
     });
     $scope.choose = function (dream) {
       if (dream !== null && dream !== undefined) {
@@ -52,7 +53,6 @@ angular.module('cdreamApp')
         for(var index in $scope.selectTags){
             arr.push($scope.selectTags[index]._id);
         }
-        console.log(test);
         $http.post("/api/tasks", {_dream : $scope.dream._id, name : $scope.task, dueTime : $scope.dt, tags : arr, createTime: new Date()}).success(function (task) {
           $http.post("/api/dreams/addTask/" + $scope.dream._id, {task: task._id});
           $scope.task = null;

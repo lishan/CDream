@@ -28,6 +28,13 @@ exports.create = function(req, res) {
   });
 };
 
+exports.findDream = function(req, res){
+  Dream.findOne({'_id' : req.params.id}).populate('tasks').exec(function(err, dream){
+    if(err){return handleError(res,err)}
+    return res.json(dream);
+  });
+};
+
 exports.addTask = function(req, res){
   if(req.body._id) { delete req.body._id; }
   Dream.findById(req.params.id, function (err, dreams) {

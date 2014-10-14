@@ -13,5 +13,6 @@ router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 router.post('/addTask/:id',controller.addTask);
 router.post('/removeTask/:id',controller.removeTask);
+router.get('/find/:id', controller.findDream);
 
 module.exports = router;
