@@ -34,9 +34,11 @@
               </div>
               <div class="col-md-4">
                 <p class="input-group">
-                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" close-text="关闭" current-text="今天" clear-text="清除" placeholder="过期时间" />
+                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened"
+                         close-text="关闭" current-text="今天" clear-text="清除" placeholder="过期时间"/>
                   <span class="input-group-btn">
-                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i>
+                    </button>
                   </span>
                 </p>
               </div>
@@ -51,7 +53,9 @@
             </div>
             <div class="row">
               <div class="col-md-10">
-                <input type="text" ng-model="selectTag" class="form-control" placeholder="添加标签" typeahead="tag as tag.name for tag in tags | filter:{name : $viewValue} | limitTo:8" typeahead-on-select="addTag()"/>
+                <input type="text" ng-model="selectTag" class="form-control" placeholder="添加标签"
+                       typeahead="tag as tag.name for tag in tags | filter:{name : $viewValue} | limitTo:8"
+                       typeahead-on-select="addTag()"/>
               </div>
               <div class="col-md-2">
                 <button type="button" class="btn btn-success" ng-click="save()"><i class="fa fa-save"></i> 保存</button>

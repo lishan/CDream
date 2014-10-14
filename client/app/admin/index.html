@@ -21,7 +21,7 @@
                 <accordion-heading>
                   <div ng-class="{'text-line-through': dream.finished}">
                     <i class='fa fa-fw' ng-class="dream.icon"></i>
-                      {{dream.name}}
+                    {{dream.name}}
                     <span class="pull-right text-muted"><em>&nbsp;{{transTime(dream.createTime)}}</em></span>
                     <span ng-if="dream.finished" class="pull-right label label-success">已完成</span>
                     <span ng-if="dream.finished" class="pull-right label label-danger">查看记录</span>
@@ -66,7 +66,7 @@
                             ng-click="deleteDream(dream)"> 删除梦想
                     </button>
                   </p>
-                  <markdown ng-model="dream">
+                  <markdown ng-model="dream" height="200" readonly="true">
                   </markdown>
                 </div>
               </accordion-group>

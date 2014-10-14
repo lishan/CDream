@@ -2,17 +2,17 @@
 
 describe('Service: utilService', function () {
 
-  // load the service's module
-  beforeEach(module('cdreamApp'));
+    // load the service's module
+    beforeEach(module('cdreamApp'));
 
-  // instantiate service
-  var utilService;
-  beforeEach(inject(function (_utilService_) {
-    utilService = _utilService_;
-  }));
+    // instantiate service
+    var utilService;
+    beforeEach(inject(function (_utilService_) {
+        utilService = _utilService_;
+    }));
 
-  it('should do something', function () {
-    expect(!!utilService).toBe(true);
-  });
+    it('should do something', function () {
+        expect(!!utilService).toBe(true);
+    });
 
 });
