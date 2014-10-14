@@ -59,6 +59,7 @@ angular.module('cdreamApp')
         $scope.selectTags = null;
         $scope.selectTags = [];
         $scope.dt = null;
+        loginService.getCookieData($scope);
         notificationService.success("添加" + task.name + "成功");
       }).error(function () {
         notificationService.success("添加" + $scope.task + "失败");
