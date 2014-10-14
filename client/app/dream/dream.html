@@ -17,8 +17,7 @@
         </div>
         <div class="panel-body">
           <div class="well">
-            <markdown ng-model="dream">
-            </markdown>
+            <div ng-bind-html="parseHtml(dream.info)"></div>
           </div>
           已有任务
           <div class="well">
@@ -34,7 +33,8 @@
               </div>
               <div class="col-md-4">
                 <p class="input-group">
-                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened"
+                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt"
+                         is-open="opened"
                          close-text="关闭" current-text="今天" clear-text="清除" placeholder="过期时间"/>
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i>
@@ -45,7 +45,8 @@
             </div>
             <div class="row">
               <div class="col-md-1" data-ng-repeat="tag in selectTags">
-                <button type="button" class="btn btn-circle btn-{{tag.color}}" ng-click="removeTag(tag)">
+                <button type="button" class="btn btn-circle btn-{{tag.color}}"
+                        ng-click="removeTag(tag)">
                   <i class="fa" ng-class="tag.icon"></i>
                 </button>
                 {{tag.name}}
@@ -58,7 +59,9 @@
                        typeahead-on-select="addTag()"/>
               </div>
               <div class="col-md-2">
-                <button type="button" class="btn btn-success" ng-click="save()"><i class="fa fa-save"></i> 保存</button>
+                <button type="button" class="btn btn-success" ng-click="save()"><i
+                  class="fa fa-save"></i> 保存
+                </button>
               </div>
             </div>
           </div>

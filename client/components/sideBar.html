@@ -1,38 +1,40 @@
 <div class="navbar-default sidebar" role="navigation">
-  <div class="sidebar-nav navbar-collapse">
-    <ul class="nav" id="side-menu">
-      <li class="sidebar-search">
-        <div class="input-group custom-search-form">
-          <input type="text" class="form-control" placeholder="Search...">
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
-                                  <i class="fa fa-search"></i>
+                                    <i class="fa fa-search"></i>
                                 </button>
                             </span>
-        </div>
-        <!-- /input-group -->
-      </li>
-      <li>
-        <a href="#admin" class="sideBar" ng-class="{active : choose()}"><i class="fa fa-edit fa-fw"></i> 设置</a>
-      </li>
-      <li>
-        <a href="#admin" class="sideBar"><i class="fa fa-line-chart fa-fw"></i> 报表</a>
-      </li>
-      <li>
-        <a href="" class="sideBar" ng-click="isCollapsed = !isCollapsed"><i class="fa fa-heart fa-fw"></i> 梦想</a>
-      </li>
-      <div collapse="isCollapsed">
-        <ul class="nav">
-          <li data-ng-repeat="dream in unfinishedDreams">
-            <a href="/dream/{{dream._id}}" ng-class="{active : choose(dream)}"> <span class="text-{{dream.color}}">  <i
-              class="fa fa-fw" ng-class="dream.icon"></i>{{dream.name}}</span></a>
-          </li>
+                </div>
+                <!-- /input-group -->
+            </li>
+            <li>
+                <a href="#admin" class="sideBar" ng-class="{active : choose()}"><i class="fa fa-edit fa-fw"></i> 设置</a>
+            </li>
+            <li>
+                <a href="#admin" class="sideBar"><i class="fa fa-line-chart fa-fw"></i> 报表</a>
+            </li>
+            <li>
+                <a href="" class="sideBar" ng-click="isCollapsed = !isCollapsed"><i class="fa fa-heart fa-fw"></i>
+                    梦想</a>
+            </li>
+            <div collapse="isCollapsed">
+                <ul class="nav">
+                    <li data-ng-repeat="dream in unfinishedDreams">
+                        <a href="/dream/{{dream._id}}" ng-class="{active : choose(dream)}"> <span
+                                class="text-{{dream.color}}">  <i
+                                class="fa fa-fw" ng-class="dream.icon"></i>{{dream.name}}</span></a>
+                    </li>
+                </ul>
+            </div>
+            <li>
+                <a href="" class="sideBar"><i class="fa fa-calendar fa-fw"></i> 计划</a>
+            </li>
         </ul>
-      </div>
-      <li>
-        <a href="" class="sideBar"><i class="fa fa-calendar fa-fw"></i> 计划</a>
-      </li>
-    </ul>
-  </div>
-  <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.sidebar-collapse -->
 </div>
