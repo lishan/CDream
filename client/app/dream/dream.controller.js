@@ -9,6 +9,7 @@ angular.module('cdreamApp')
       $scope.dream = dream;
       $scope.tasks = dream.tasks;
     });
+
     $scope.choose = function (dream) {
       if (dream !== null && dream !== undefined) {
         return $routeParams.dreamId === dream._id;
@@ -21,6 +22,13 @@ angular.module('cdreamApp')
       $event.stopPropagation();
 
       $scope.opened = true;
+    };
+
+    $scope.openTask = function($event, task){
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      task.opened = true;
     };
 
     $scope.selectTags = [];
