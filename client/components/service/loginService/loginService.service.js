@@ -13,10 +13,17 @@ angular.module('cdreamApp')
         $scope.tags = user.tags;
         $scope.numDreams = user.dreams.length;
         $scope.numTags = user.tags.length;
+
+        $scope.unfinishedDreams = [];
+        for(var index in user.dreams){
+            if(!user.dreams[index].finished){
+                $scope.unfinishedDreams.push(user.dreams[index]);
+            }
+        }
       });
     };
 
     this.getSoftwareVersion = function () {
-      return 0.3;
+      return 0.4;
     }
   });

@@ -16,8 +16,41 @@
           {{dream.name}}
         </div>
         <div class="panel-body">
-          <div>
-            toMarkdown({{dream.info}})
+          <div class="well">
+            <markdown ng-model="dream">
+            </markdown>
+          </div>
+          新建任务
+          <div class="well">
+            <div class="row">
+              <div class="col-md-8">
+                <input type="text" ng-model="task" class="form-control" placeholder="任务描述">
+              </div>
+              <div class="col-md-4">
+                <p class="input-group">
+                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" close-text="关闭" current-text="今天" clear-text="清除" placeholder="过期时间" />
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="open($event)"><i class="fa fa-calendar"></i></button>
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-1" data-ng-repeat="tag in selectTags">
+                <button type="button" class="btn btn-circle btn-{{tag.color}}" ng-click="removeTag(tag)">
+                  <i class="fa" ng-class="tag.icon"></i>
+                </button>
+                {{tag.name}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-10">
+                <input type="text" ng-model="selectTag" class="form-control" placeholder="添加标签" typeahead="tag as tag.name for tag in tags | filter:{name : $viewValue} | limitTo:8" typeahead-on-select="addTag()"/>
+              </div>
+              <div class="col-md-2">
+                <button type="button" class="btn btn-success" ng-click="save()"><i class="fa fa-save"></i> 保存</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

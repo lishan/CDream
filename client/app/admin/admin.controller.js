@@ -34,6 +34,7 @@ angular.module('cdreamApp')
         notificationService.info(dream.name + "已完成");
         dream.finished = true;
       }
+      loginService.getCookieData($scope);
     };
     $scope.setIconColor = function (dream, icon, color) {
       dream.icon = icon;
@@ -72,7 +73,6 @@ angular.module('cdreamApp')
         $modalInstance.close(dream);
         notificationService.success("添加" + $scope.dream.name + "失败");
       });
-
     };
 
     $scope.cancel = function () {

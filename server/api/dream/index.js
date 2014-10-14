@@ -11,5 +11,7 @@ router.post('/', controller.create);
 router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
+router.post('/addTask/:id',controller.addTask);
+router.post('/removeTask/:id',controller.removeTask);
 
 module.exports = router;

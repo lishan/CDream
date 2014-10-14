@@ -28,6 +28,31 @@ exports.create = function(req, res) {
   });
 };
 
+exports.addTask = function(req, res){
+  if(req.body._id) { delete req.body._id; }
+  Dream.findById(req.params.id, function (err, dreams) {
+    if (err) { return handleError(res, err); }
+    if(!dreams) { return res.send(404); }
+    dreams.tasks.push(req.body.task);
+    dreams.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, dreams);
+    });
+  });
+};
+
+exports.removeTask = function(req, res){
+  Dream.findById(req.params.id, function (err, dreams) {
+    if (err) { return handleError(res, err); }
+    if(!dreams) { return res.send(404); }
+    dreams.tasks.pull(req.body.task);
+    dreams.save(function (err) {
+      if (err) { return handleError(res, err); }
+      return res.json(200, dreams);
+    });
+  });
+};
+
 // Updates an existing dream in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
