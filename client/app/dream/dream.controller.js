@@ -5,16 +5,75 @@ angular.module('cdreamApp')
     loginService.getCookieData($scope);
     $scope.softVersion = loginService.getSoftwareVersion();
 
-    $http.get("/api/dreams/find/" + $routeParams.dreamId).success(function (dream) {
-      $scope.dream = dream;
-      $scope.tasks = dream.tasks;
-    });
+    function getData(){
+        $http.get("/api/dreams/find/" + $routeParams.dreamId).success(function (dream) {
+          $scope.dream = dream;
+          $scope.tasks = dream.tasks;
+        });
+    }
+
+    getData();
 
     $scope.choose = function (dream) {
       if (dream !== null && dream !== undefined) {
         return $routeParams.dreamId === dream._id;
       }
       return false;
+    };
+
+    $scope.removeTaskTag = function(tag, task){
+      for(var index in task.tags){
+        if(task.tags[index]._id === tag._id){
+            task.tags.splice(index,1);
+        }
+      }
+    };
+
+    $scope.addTaskTag = function(task){
+      var flag = false;
+      for(var index in task.tags){
+        if(task.tags[index]._id === task.selectTaskTag._id){
+          flag = true;
+          break;
+        }
+      }
+      if(!flag){
+        task.tags.push(task.selectTaskTag);
+      }
+      task.selectTaskTag = null;
+    };
+
+    $scope.saveTask = function(task){
+      var tmpTags = [];
+      for(var index in task.tags){
+        tmpTags.push(task.tags[index]._id);
+      }
+      $http.put("/api/tasks/" + task._id, {name : task.name, dueTime : task.dueTime, tags : tmpTags}).success(function(){
+        getData();
+        notificationService.success("修改" + task.name + "成功");
+      }).error(function(){
+        notificationService.error("修改" + task.name + "失败");
+      });
+    };
+
+    $scope.finishedTask = function(task){
+      var flag = !task.finished;
+      $http.put("/api/tasks/" + task._id, {finished : flag}).success(function(){
+        getData();
+        notificationService.success("完成" + task.name + "成功");
+      }).error(function(){
+        notificationService.error("完成" + task.name + "失败");
+      });
+    };
+
+    $scope.deleteTask = function(task){
+      $http.post("/api/dreams/removeTask/" + $scope.dream._id, {task: task._id}).success(function () {
+        $http.delete("/api/tasks/" + task._id);
+        getData();
+        notificationService.success("删除" + task.name + "成功");
+      }).error(function () {
+        notificationService.error("删除" + task.name + "失败");
+      });
     };
 
     $scope.open = function ($event) {
@@ -68,6 +127,7 @@ angular.module('cdreamApp')
         $scope.selectTags = [];
         $scope.dt = null;
         loginService.getCookieData($scope);
+        getData();
         notificationService.success("添加" + task.name + "成功");
       }).error(function () {
         notificationService.success("添加" + $scope.task + "失败");

@@ -8,6 +8,7 @@ var TaskSchema = new Schema({
   createTime : Date,
   dueTime : Date,
   name: String,
+  finished: {type: Boolean, default: false},
   info: String,
   tags: [{type : Schema.Types.ObjectId, ref : 'Tag'}],
   active: Boolean

@@ -31,10 +31,15 @@ exports.create = function(req, res) {
 // Updates an existing task in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
+  if(req.body.tags) {
+    var tmpTag = req.body.tags;
+    delete req.body.tags;
+  }
   Task.findById(req.params.id, function (err, task) {
     if (err) { return handleError(res, err); }
     if(!task) { return res.send(404); }
     var updated = _.merge(task, req.body);
+    updated.tags = tmpTag;
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, task);

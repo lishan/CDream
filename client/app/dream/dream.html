@@ -20,30 +20,68 @@
             <div ng-bind-html="parseHtml(dream.info)"></div>
           </div>
           已有任务
-          <div class="well">
-            <div class="row" data-ng-repeat="task in tasks">
-              <div class="col-md-4">
-                <input type="text" class="form-control" ng-model="task.name"/>
+          <div class="well" data-ng-repeat="task in tasks" ng-if="task.finished">
+            <div class="row">
+              <div class="col-md-8">
+                <input type="text" disabled class="form-control" ng-model="task.name"/>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-4">
                 <p class="input-group">
-                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="task.dueTime"
-                         is-open="task.opened"
-                         close-text="关闭" current-text="今天" clear-text="清除"/>
-                    <span class="input-group-btn">
-                      <button type="button" class="btn btn-default" ng-click="openTask($event,task)"><i
-                        class="fa fa-calendar"></i>
-                      </button>
-                    </span>
+                  <input disabled type="text" class="form-control" datepicker-popup ng-model="task.dueTime" is-open="task.opened" close-text="关闭" current-text="今天" clear-text="清除" placeholder="过期时间"/>
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn default" ng-click="openTask($event,task)"><i class="fa fa-calendar"></i></button>
+                  </span>
                 </p>
               </div>
-              <div class="col-md-6">
-                <div data-ng-repeat="tag in task.tags">
-                  <!--<button type="button" class="btn btn-circle btn-{{findTag(tagId).color}}">-->
-                  <!--<i class="fa" ng-class="findTag(tagId).icon"></i>-->
-                  <!--</button>-->
-                  {{tag | json}}
-                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-1" data-ng-repeat="tag in task.tags">
+                <button type="button" class="btn btn-circle btn-{{tag.color}}">
+                  <i class="fa" ng-class="tag.icon"></i>
+                </button>
+                {{tag.name}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 col-md-offset-8">
+                <button type="button" class="btn btn-danger btn-outline" ng-click="finishedTask(task)">重新打开</button>
+                <button type="button" class="btn btn-info btn-outline" ng-click="deleteTask(task)">删除任务</button>
+              </div>
+            </div>
+          </div>
+          <div class="well" data-ng-repeat="task in tasks" ng-if="!task.finished">
+            <div class="row">
+              <div class="col-md-8">
+                <input type="text" class="form-control" ng-model="task.name"/>
+              </div>
+              <div class="col-md-4">
+                <p class="input-group">
+                  <input type="text" class="form-control" datepicker-popup ng-model="task.dueTime" is-open="task.opened" close-text="关闭" current-text="今天" clear-text="清除" placeholder="过期时间"/>
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn default" ng-click="openTask($event,task)"><i class="fa fa-calendar"></i></button>
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-1" data-ng-repeat="tag in task.tags">
+                <button type="button" class="btn btn-circle btn-{{tag.color}}"
+                        ng-click="removeTaskTag(tag,task)">
+                  <i class="fa" ng-class="tag.icon"></i>
+                </button>
+                {{tag.name}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <input type="text" ng-model="task.selectTaskTag" class="form-control" placeholder="添加标签"
+                       typeahead="tag as tag.name for tag in tags | filter:{name : $viewValue} | limitTo:8"
+                       typeahead-on-select="addTaskTag(task)"/>
+              </div>
+              <div class="col-md-4">
+                <button type="button" class="btn btn-success btn-outline" ng-click="saveTask(task)">保存</button>
+                <button type="button" class="btn btn-danger btn-outline" ng-click="finishedTask(task)">完成任务</button>
+                <button type="button" class="btn btn-info btn-outline" ng-click="deleteTask(task)">删除任务</button>
               </div>
             </div>
           </div>
@@ -55,7 +93,7 @@
               </div>
               <div class="col-md-4">
                 <p class="input-group">
-                  <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt"
+                  <input type="text" class="form-control" datepicker-popup ng-model="dt"
                          is-open="opened"
                          close-text="关闭" current-text="今天" clear-text="清除" placeholder="过期时间"/>
                   <span class="input-group-btn">

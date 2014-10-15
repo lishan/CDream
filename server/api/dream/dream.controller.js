@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Dream = require('./dream.model');
+var Task = require('../task/task.model');
 
 // Get list of dreams
 exports.index = function(req, res) {
@@ -30,8 +31,12 @@ exports.create = function(req, res) {
 
 exports.findDream = function(req, res){
   Dream.findOne({'_id' : req.params.id}).populate('tasks').exec(function(err, dream){
+    Task.populate(dream.tasks,{path : 'tags'},function(err,tasks){
+        if(err){return handleError(res,err)}
+        dream.tasks = tasks;
+        return res.json(dream);
+    });
     if(err){return handleError(res,err)}
-    return res.json(dream);
   });
 };
 
