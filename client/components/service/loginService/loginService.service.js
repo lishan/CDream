@@ -20,10 +20,12 @@ angular.module('cdreamApp')
             $scope.unfinishedDreams.push(user.dreams[index]);
           }
         }
+      }).error(function(){
+        $location.path("/");
       });
     };
 
     this.getSoftwareVersion = function () {
-      return 0.4;
+      return 1.1;
     }
   });
