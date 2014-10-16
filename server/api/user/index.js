@@ -7,6 +7,7 @@ var router = express.Router();
 
 router.get('/', controller.index);
 router.get('/:email&:pass', controller.find);
+router.get('/findEmail/:email', controller.findEmail);
 router.get('/find/:email', controller.findUser);
 router.post('/addDream/:id', controller.addDream);
 router.post('/removeDream/:id', controller.removeDream);

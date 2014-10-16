@@ -37,7 +37,7 @@ angular.module('cdreamApp')
         notificationService.error("请重试");
         return;
       }
-      $http.get('/api/users/find/' + $scope.email).success(function (user) {
+      $http.get('/api/users/findEmail/' + $scope.email).success(function (user) {
         if (user === null || user === 'null') {
           $http.post('/api/users/', {email: $scope.email, pass: $scope.pass});
           $cookies.user = $scope.email;
