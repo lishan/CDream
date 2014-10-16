@@ -5,7 +5,7 @@ angular.module('cdreamApp')
     loginService.getCookieData($scope,true);
     $scope.softVersion = loginService.getSoftwareVersion();
     $scope.choose = function (obj) {
-      return obj === null || obj === undefined;
+      return obj === "admin";
     };
 
   });

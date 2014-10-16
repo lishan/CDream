@@ -12,5 +12,6 @@ router.put('/:id', controller.update);
 router.patch('/:id', controller.update);
 router.delete('/:id', controller.destroy);
 router.get('/find/:id', controller.findTask);
+router.get('/findDate/:date', controller.findDate);
 
 module.exports = router;

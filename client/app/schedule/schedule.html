@@ -1,0 +1,92 @@
+<div id="wrapper">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div ng-include="'components/gtdHeader.html'"></div>
+    <div ng-include="'components/sideBar.html'"></div>
+    <!-- /.navbar-static-side -->
+  </nav>
+  <div id="page-wrapper">
+    <br>
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <i class="fa fa-shopping-cart fa-fw"></i>
+          今天
+        </div>
+        <div class="panel-body">
+          <ul data-ng-repeat="task in detailAllTasks" bindonce ng-if="checkTime(task.dueTime,0)">
+            <li>
+              {{task.name}}
+              <span class="label label-default label-{{task._dream.color}}">{{task._dream.name}}</span>
+              <span class="label label-default label-{{tag.color}}" data-ng-repeat="tag in task.tags">
+                 <i class="fa {{tag.icon}}"></i>&nbsp;{{tag.name}}
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <i class="fa fa-shopping-cart fa-fw"></i>
+          明天
+        </div>
+        <div class="panel-body">
+          <ul data-ng-repeat="task in detailAllTasks" bindonce ng-if="checkTime(task.dueTime,-1)">
+            <li>
+              {{task.name}}
+              <span class="label label-default label-{{task._dream.color}}">{{task._dream.name}}</span>
+
+              <span class="label label-default label-{{tag.color}}" data-ng-repeat="tag in task.tags">
+                 <i class="fa {{tag.icon}}"></i>&nbsp;{{tag.name}}
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <i class="fa fa-shopping-cart fa-fw"></i>
+          过期
+        </div>
+        <div class="panel-body">
+          <ul data-ng-repeat="task in detailAllTasks" bindonce ng-if="checkDue(task.dueTime)">
+            <li>
+              {{task.name}}
+              <span class="label label-default label-{{task._dream.color}}">{{task._dream.name}}</span>
+
+              <span class="label label-default label-{{tag.color}}" data-ng-repeat="tag in task.tags">
+                 <i class="fa {{tag.icon}}"></i>&nbsp;{{tag.name}}
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <i class="fa fa-shopping-cart fa-fw"></i>
+          我的梦想
+        </div>
+        <div class="panel-body">
+          <div class="col-md-3" data-ng-repeat="dream in dreams" bindonce>
+            <div class="panel panel-{{dream.color}} panel-default">
+              <div class="panel-heading">
+                <h4>{{dream.name}}</h4>
+                <div class="well">
+                  <div ng-bind-html="parseHtml(dream.info)"></div>
+                </div>
+                进度
+                <progressbar type="{{dream.color}}" class="progress-striped active" value="getProgress(dream)">{{getProgress(dream)}}%</progressbar>
+                <p><a class="btn btn-default btn-block" href="/dream/{{dream._id}}">查看</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /#page-wrapper -->
+
+
+</div>
+<!-- /#wrapper -->

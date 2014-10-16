@@ -35,6 +35,13 @@ exports.findTask = function(req, res){
   });
 };
 
+exports.findDate = function(req, res){
+  Task.find({'dueTime' : req.params.date}).populate('_dream tags').exec(function (err, tasks) {
+     if(err) { return handleError(res, err); }
+     return res.json(200, tasks);
+  });
+};
+
 // Updates an existing task in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
