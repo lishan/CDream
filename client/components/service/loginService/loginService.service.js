@@ -2,7 +2,7 @@
 
 angular.module('cdreamApp')
   .service('loginService', function ($location, $http, $cookies) {
-    this.getCookieData = function ($scope) {
+    this.getCookieData = function ($scope, loadAllTasks) {
       $scope.user = $cookies.user;
       if ($scope.user === '' || $scope.user === undefined) {
         $location.path("/");
@@ -18,6 +18,17 @@ angular.module('cdreamApp')
         for (var index in user.dreams) {
           if (!user.dreams[index].finished) {
             $scope.unfinishedDreams.push(user.dreams[index]);
+          }
+        }
+
+        loadAllTasks = typeof loadAllTasks !== 'undefined' ? loadAllTasks : false;
+
+        if(loadAllTasks){
+          $scope.allTasks = [];
+          for(var index in $scope.dreams){
+             $http.get("/api/dreams/find/" + $scope.dreams[index]._id).success(function (dream) {
+                 $scope.allTasks = $scope.allTasks.concat(dream.tasks);
+             });
           }
         }
       }).error(function(){

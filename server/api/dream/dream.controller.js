@@ -31,7 +31,7 @@ exports.create = function(req, res) {
 
 exports.findDream = function(req, res){
   Dream.findOne({'_id' : req.params.id}).populate('tasks').exec(function(err, dream){
-    Task.populate(dream.tasks,{path : 'tags'},function(err,tasks){
+    Task.populate(dream.tasks,{path : 'tags _dream'},function(err,tasks){
         if(err){return handleError(res,err)}
         dream.tasks = tasks;
         return res.json(dream);
