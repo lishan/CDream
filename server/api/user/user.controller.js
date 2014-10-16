@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var User = require('./user.model');
+var Dream = require('../dream/dream.model');
 
 // Get list of users
 exports.index = function(req, res) {
@@ -26,8 +27,12 @@ exports.findEmail = function(req ,res){
 
 exports.findUser = function(req, res){
   User.findOne({'email' : req.params.email}).populate('dreams tags').exec(function(err, user){
+    Dream.populate(user.dreams,{path : '_user tasks'},function(err,dreams){
+       if(err){return handleError(res,err)}
+       user.dreams = dreams;
+       return res.json(user);
+    });
     if(err){return handleError(res,err)}
-    return res.json(user);
   });
 };
 

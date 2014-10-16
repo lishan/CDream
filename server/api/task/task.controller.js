@@ -28,6 +28,13 @@ exports.create = function(req, res) {
   });
 };
 
+exports.findTask = function(req, res){
+  Task.findOne({'_id' : req.params.id}).populate('_dream tags').exec(function(err, task){
+     if(err){return handleError(res,err)}
+     return res.json(task);
+  });
+};
+
 // Updates an existing task in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }

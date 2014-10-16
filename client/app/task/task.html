@@ -24,7 +24,7 @@
                       <th>是否完成</th>
                       <th>包含标签</th>
                     </thead>
-                    <tbody bindonce ng-repeat="task in allTasks">
+                    <tbody bindonce ng-repeat="task in detailAllTasks">
                       <td>{{task.name}}</td>
                       <td>{{task._dream.name}}</td>
                       <td>{{task.createTime | date : "yyyy年MM月dd日"}}</td>

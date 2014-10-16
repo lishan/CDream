@@ -21,16 +21,22 @@ angular.module('cdreamApp')
           }
         }
 
-        loadAllTasks = typeof loadAllTasks !== 'undefined' ? loadAllTasks : false;
+        loadAllTasks = typeof loadAllTasks !== "undefined" ? loadAllTasks : false;
+        $scope.allTasks = [];
+        for(var index in $scope.dreams){
+           $scope.allTasks = $scope.allTasks.concat($scope.dreams[index].tasks);
+        }
 
         if(loadAllTasks){
-          $scope.allTasks = [];
-          for(var index in $scope.dreams){
-             $http.get("/api/dreams/find/" + $scope.dreams[index]._id).success(function (dream) {
-                 $scope.allTasks = $scope.allTasks.concat(dream.tasks);
+           $scope.detailAllTasks = [];
+           for(var index in $scope.allTasks){
+             $http.get('/api/tasks/find/' + $scope.allTasks[index]._id).success(function (task) {
+                $scope.detailAllTasks.push(task);
              });
-          }
+           }
         }
+
+        $scope.numTasks = $scope.allTasks.length;
       }).error(function(){
         $location.path("/");
       });
