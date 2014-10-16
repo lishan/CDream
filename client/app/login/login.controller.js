@@ -42,5 +42,5 @@ angular.module('cdreamApp')
           notificationService.error("错误的用户名和密码，请重试");
         }
       });
-    }
+    };
   });

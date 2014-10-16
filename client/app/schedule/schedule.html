@@ -15,7 +15,7 @@
           今天
         </div>
         <div class="panel-body">
-          <ul data-ng-repeat="task in detailAllTasks" bindonce ng-if="checkTime(task.dueTime,0)">
+          <ul data-ng-repeat="task in detailAllTasks" bindonce ng-if="!task.finished && checkTime(task.dueTime,0)">
             <li>
               {{task.name}}
               <span class="label label-default label-{{task._dream.color}}">{{task._dream.name}}</span>
@@ -32,7 +32,7 @@
           明天
         </div>
         <div class="panel-body">
-          <ul data-ng-repeat="task in detailAllTasks" bindonce ng-if="checkTime(task.dueTime,-1)">
+          <ul data-ng-repeat="task in detailAllTasks" bindonce ng-if="!task.finished && checkTime(task.dueTime,-1)">
             <li>
               {{task.name}}
               <span class="label label-default label-{{task._dream.color}}">{{task._dream.name}}</span>
@@ -50,7 +50,7 @@
           过期
         </div>
         <div class="panel-body">
-          <ul data-ng-repeat="task in detailAllTasks" bindonce ng-if="checkDue(task.dueTime)">
+          <ul data-ng-repeat="task in detailAllTasks" bindonce ng-if="!task.finished && checkDue(task.dueTime)">
             <li>
               {{task.name}}
               <span class="label label-default label-{{task._dream.color}}">{{task._dream.name}}</span>

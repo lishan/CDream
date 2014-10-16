@@ -6,6 +6,9 @@ var mongoose = require('mongoose'),
 var UsersSchema = new Schema({
   email: String,
   pass: String,
+  mobile: String,
+  qq: String,
+  address: String,
   dreams: [{type : Schema.Types.ObjectId, ref : 'Dream'}],
   tags: [{type : Schema.Types.ObjectId, ref : 'Tag'}],
   active: Boolean
