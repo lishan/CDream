@@ -6,5 +6,9 @@ angular.module('cdreamApp')
       .when('/helper/icon', {
         templateUrl: 'app/helper/helperIcon.html',
         controller: 'HelperIconCtrl'
+      })
+      .when('/helper1', {
+        templateUrl: 'app/helper/help1.html',
+        controller: 'HelperIconCtrl'
       });
   });
