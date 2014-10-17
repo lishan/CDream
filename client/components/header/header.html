@@ -8,9 +8,14 @@
             </a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-if="testLogin()">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
+                <li>
+                  <a href="/helper1">
+                    <i class="fa fa-question"></i>&nbsp;帮助
+                  </a>
+                </li>
+                <li class="dropdown" ng-if="testLogin()">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{user}}<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a ng-click="logout()">登出</a></li>
