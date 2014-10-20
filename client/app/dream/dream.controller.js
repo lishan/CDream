@@ -5,11 +5,11 @@ angular.module('cdreamApp')
     loginService.getCookieData($scope);
     $scope.softVersion = loginService.getSoftwareVersion();
 
-    function getData(){
-        $http.get("/api/dreams/find/" + $routeParams.dreamId).success(function (dream) {
-          $scope.dream = dream;
-          $scope.tasks = dream.tasks;
-        });
+    function getData() {
+      $http.get("/api/dreams/find/" + $routeParams.dreamId).success(function (dream) {
+        $scope.dream = dream;
+        $scope.tasks = dream.tasks;
+      });
     }
 
     getData();
@@ -21,52 +21,52 @@ angular.module('cdreamApp')
       return false;
     };
 
-    $scope.removeTaskTag = function(tag, task){
-      for(var index in task.tags){
-        if(task.tags[index]._id === tag._id){
-            task.tags.splice(index,1);
+    $scope.removeTaskTag = function (tag, task) {
+      for (var index in task.tags) {
+        if (task.tags[index]._id === tag._id) {
+          task.tags.splice(index, 1);
         }
       }
     };
 
-    $scope.addTaskTag = function(task){
+    $scope.addTaskTag = function (task) {
       var flag = false;
-      for(var index in task.tags){
-        if(task.tags[index]._id === task.selectTaskTag._id){
+      for (var index in task.tags) {
+        if (task.tags[index]._id === task.selectTaskTag._id) {
           flag = true;
           break;
         }
       }
-      if(!flag){
+      if (!flag) {
         task.tags.push(task.selectTaskTag);
       }
       task.selectTaskTag = null;
     };
 
-    $scope.saveTask = function(task){
+    $scope.saveTask = function (task) {
       var tmpTags = [];
-      for(var index in task.tags){
+      for (var index in task.tags) {
         tmpTags.push(task.tags[index]._id);
       }
-      $http.put("/api/tasks/" + task._id, {name : task.name, dueTime : task.dueTime, tags : tmpTags}).success(function(){
+      $http.put("/api/tasks/" + task._id, {name: task.name, dueTime: task.dueTime, tags: tmpTags}).success(function () {
         getData();
         notificationService.success("修改" + task.name + "成功");
-      }).error(function(){
+      }).error(function () {
         notificationService.error("修改" + task.name + "失败");
       });
     };
 
-    $scope.finishedTask = function(task){
+    $scope.finishedTask = function (task) {
       var flag = !task.finished;
-      $http.put("/api/tasks/" + task._id, {finished : flag}).success(function(){
+      $http.put("/api/tasks/" + task._id, {finished: flag}).success(function () {
         getData();
         notificationService.success("完成" + task.name + "成功");
-      }).error(function(){
+      }).error(function () {
         notificationService.error("完成" + task.name + "失败");
       });
     };
 
-    $scope.deleteTask = function(task){
+    $scope.deleteTask = function (task) {
       $http.post("/api/dreams/removeTask/" + $scope.dream._id, {task: task._id}).success(function () {
         $http.delete("/api/tasks/" + task._id);
         getData();
@@ -83,7 +83,7 @@ angular.module('cdreamApp')
       $scope.opened = true;
     };
 
-    $scope.openTask = function($event, task){
+    $scope.openTask = function ($event, task) {
       $event.preventDefault();
       $event.stopPropagation();
 
@@ -134,7 +134,7 @@ angular.module('cdreamApp')
       });
     };
 
-    $scope.parseHtml = function(str){
+    $scope.parseHtml = function (str) {
       return markdownPro.changeHtml(str);
     };
 

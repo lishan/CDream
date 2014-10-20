@@ -8,6 +8,7 @@
   </nav>
   <div id="page-wrapper">
     <br>
+
     <div class="row">
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -72,11 +73,14 @@
             <div class="panel panel-{{dream.color}} panel-default">
               <div class="panel-heading">
                 <h4>{{dream.name}}</h4>
+
                 <div class="well">
                   <div ng-bind-html="parseHtml(dream.info)"></div>
                 </div>
                 进度
-                <progressbar type="{{dream.color}}" class="progress-striped active" value="getProgress(dream)">{{getProgress(dream)}}%</progressbar>
+                <progressbar type="{{dream.color}}" class="progress-striped active" value="getProgress(dream)">
+                  {{getProgress(dream)}}%
+                </progressbar>
                 <p><a class="btn btn-default btn-block" href="/dream/{{dream._id}}">查看</a></p>
               </div>
             </div>

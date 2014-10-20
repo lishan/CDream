@@ -1,47 +1,47 @@
 <div id="wrapper">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div ng-include="'components/gtdHeader.html'"></div>
-        <div ng-include="'components/sideBar.html'"></div>
-        <!-- /.navbar-static-side -->
-    </nav>
-    <div id="page-wrapper">
-        <div ng-include="'components/adminHeader.html'"></div>
-        <div class="row">
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <i class="fa fa-shopping-cart fa-fw"></i>
-                    我的任务
-                </div>
-                <div class="panel-body">
-                  <table class="table table-bordered table-striped table-hover dataTable no-footer">
-                    <thead>
-                      <th>名称</th>
-                      <th>梦想</th>
-                      <th>创建时间</th>
-                      <th>到期时间</th>
-                      <th>是否完成</th>
-                      <th>包含标签</th>
-                    </thead>
-                    <tbody bindonce ng-repeat="task in detailAllTasks">
-                      <td>{{task.name}}</td>
-                      <td>{{task._dream.name}}</td>
-                      <td>{{task.createTime | date : "yyyy年MM月dd日"}}</td>
-                      <td>{{task.dueTime | date : "yyyy年MM月dd日"}}</td>
-                      <td>{{task.finished?"是":"否"}}</td>
-                      <td>
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div ng-include="'components/gtdHeader.html'"></div>
+    <div ng-include="'components/sideBar.html'"></div>
+    <!-- /.navbar-static-side -->
+  </nav>
+  <div id="page-wrapper">
+    <div ng-include="'components/adminHeader.html'"></div>
+    <div class="row">
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <i class="fa fa-shopping-cart fa-fw"></i>
+          我的任务
+        </div>
+        <div class="panel-body">
+          <table class="table table-bordered table-striped table-hover dataTable no-footer">
+            <thead>
+            <th>名称</th>
+            <th>梦想</th>
+            <th>创建时间</th>
+            <th>到期时间</th>
+            <th>是否完成</th>
+            <th>包含标签</th>
+            </thead>
+            <tbody bindonce ng-repeat="task in detailAllTasks">
+            <td>{{task.name}}</td>
+            <td>{{task._dream.name}}</td>
+            <td>{{task.createTime | date : "yyyy年MM月dd日"}}</td>
+            <td>{{task.dueTime | date : "yyyy年MM月dd日"}}</td>
+            <td>{{task.finished?"是":"否"}}</td>
+            <td>
                         <span bindonce data-ng-repeat="tag in task.tags" class="text-{{tag.color}}">
                           {{tag.name}}
                         </span>
-                      </td>
-                    </tbody>
-                  </table>
-                </div>
-            </div>
+            </td>
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
-    <!-- /#page-wrapper -->
+  </div>
+  <!-- /#page-wrapper -->
 
 
 </div>
