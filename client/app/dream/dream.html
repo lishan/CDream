@@ -55,9 +55,16 @@
                                typeahead="tag as tag.name for tag in tags | filter:{name : $viewValue} | limitTo:8"
                                typeahead-on-select="addTaskTag(task)"/>
                       </li>
-                      <li><button type="button" class="btn btn-success btn-outline" ng-click="saveTask(task)">保存</button></li>
-                      <li><button type="button" class="btn btn-danger btn-outline" ng-click="finishedTask(task)">完成任务</button></li>
-                      <li><button type="button" class="btn btn-info btn-outline" ng-click="deleteTask(task)">删除任务</button></li>
+                      <li>
+                        <button type="button" class="btn btn-success btn-outline" ng-click="saveTask(task)">保存</button>
+                      </li>
+                      <li>
+                        <button type="button" class="btn btn-danger btn-outline" ng-click="finishedTask(task)">完成任务
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button" class="btn btn-info btn-outline" ng-click="deleteTask(task)">删除任务</button>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -89,10 +96,15 @@
                         </button>
                       </li>
                       <li>
-                        <input type="text" class="form-control"  disabled placeholder="已完成"/>
+                        <input type="text" class="form-control" disabled placeholder="已完成"/>
                       </li>
-                      <li><button type="button" class="btn btn-danger btn-outline" ng-click="finishedTask(task)">重新打开</button></li>
-                      <li><button type="button" class="btn btn-info btn-outline" ng-click="deleteTask(task)">删除任务</button></li>
+                      <li>
+                        <button type="button" class="btn btn-danger btn-outline" ng-click="finishedTask(task)">重新打开
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button" class="btn btn-info btn-outline" ng-click="deleteTask(task)">删除任务</button>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -123,24 +135,25 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-1" data-ng-repeat="tag in selectTags">
-                    <button type="button" class="btn btn-circle btn-{{tag.color}}"
-                            ng-click="removeTag(tag)">
-                      <i class="fa" ng-class="tag.icon"></i>
-                    </button>
-                    {{tag.name}}
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-10">
-                    <input type="text" ng-model="selectTag" class="form-control" placeholder="添加标签"
-                           typeahead="tag as tag.name for tag in tags | filter:{name : $viewValue} | limitTo:8"
-                           typeahead-on-select="addTag()"/>
-                  </div>
-                  <div class="col-md-2">
-                    <button type="button" class="btn btn-success" ng-click="save()"><i
-                      class="fa fa-save"></i> 保存
-                    </button>
+                  <div class="col-md-12">
+                    <ul class="list-inline">
+                      <li data-ng-repeat="tag in selectTags">
+                        <button class="btn btn-default btn-{{tag.color}}" tooltip="{{tag.info}}">
+                          <i class="fa" ng-class="tag.icon"></i>&nbsp;{{tag.name}}
+                          <a class="remove-button" ng-click="removeTag(tag)">×</a>
+                        </button>
+                      </li>
+                      <li>
+                        <input type="text" ng-model="selectTag" class="form-control" placeholder="添加标签"
+                               typeahead="tag as tag.name for tag in tags | filter:{name : $viewValue} | limitTo:8"
+                               typeahead-on-select="addTag()"/>
+                      </li>
+                      <li>
+                        <button type="button" class="btn btn-success" ng-click="save()"><i
+                          class="fa fa-save"></i> 保存
+                        </button>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -149,8 +162,9 @@
         </div>
       </div>
     </div>
-    <!-- /#page-wrapper -->
-
-
   </div>
-  <!-- /#wrapper -->
+  <!-- /#page-wrapper -->
+
+
+</div>
+<!-- /#wrapper -->
