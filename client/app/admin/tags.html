@@ -18,27 +18,18 @@
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
-          <ul class="chat">
-            <li class="left clearfix" data-ng-repeat="tag in tags">
-            <span class="chat-img pull-left">
-                   <button type="button" class="btn btn-circle btn-lg btn-{{tag.color}}">
-                     <i class="fa" ng-class="tag.icon"></i>
-                   </button>
-            </span>
-
-              <div class="chat-body clearfix">
-                <h4 class="header">
-                  <strong class="primary-font">{{tag.name}}</strong>
-                  <small>
-                    {{tag.info}}
-                  </small>
-                </h4>
-                <button class="btn btn-{{tag.color}}" ng-click="remove(tag)"><i
-                  class="fa fa-times fa-fw"></i>删除标签
-                </button>
-              </div>
-            </li>
-          </ul>
+          <div class="row">
+            <div class="col-md-12">
+              <ul class="list-inline" >
+                <li data-ng-repeat="tag in tags">
+                  <button class="btn btn-default btn-{{tag.color}}" tooltip="{{tag.info}}">
+                    <i class="fa" ng-class="tag.icon"></i>&nbsp;{{tag.name}}
+                    <a class="remove-button" ng-click="remove(tag)">×</a>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
         <!-- /.panel-body -->
         <div class="panel-footer">
