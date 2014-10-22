@@ -57,8 +57,12 @@ angular.module('cdreamApp')
     };
 
     $scope.finishedTask = function (task) {
+      var tmpTags = [];
+      for (var index in task.tags) {
+        tmpTags.push(task.tags[index]._id);
+      }
       var flag = !task.finished;
-      $http.put("/api/tasks/" + task._id, {finished: flag}).success(function () {
+      $http.put("/api/tasks/" + task._id, {finished: flag, tags: tmpTags}).success(function () {
         getData();
         notificationService.success("完成" + task.name + "成功");
       }).error(function () {
@@ -106,8 +110,7 @@ angular.module('cdreamApp')
     };
 
     $scope.removeTag = function (tag) {
-      var index = 0;
-      for (index in $scope.selectTags) {
+      for (var index in $scope.selectTags) {
         if ($scope.selectTags[index]._id === tag._id) {
           $scope.selectTags.splice(index, 1);
           break;

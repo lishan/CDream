@@ -9,7 +9,8 @@ angular.module('cdreamApp', [
   'ui.bootstrap',
   'jlareau.pnotify',
   'cfp.hotkeys',
-  'markdown.provider'
+  'markdown.provider',
+  'ui.calendar'
 ])
   .config(function ($routeProvider, $locationProvider, notificationServiceProvider) {
     $routeProvider
