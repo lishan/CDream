@@ -3,6 +3,7 @@
 angular.module('cdreamApp')
   .controller('ProfileCtrl', function ($scope, $http, socket, $location, $cookies, loginService, $routeParams, notificationService, hotkeys) {
     loginService.getCookieData($scope);
+    $scope.softVersion = loginService.getSoftwareVersion();
 
     $scope.click = function () {
       if ($scope.loginUser.pass === undefined) {
