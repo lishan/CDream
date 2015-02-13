@@ -5,8 +5,9 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/cdream-dev'
+    uri: 'mongodb://localhost/cdream'
   },
+  port : 80,
 
   seedDB: true
 };
